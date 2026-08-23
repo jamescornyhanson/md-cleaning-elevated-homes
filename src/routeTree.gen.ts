@@ -12,6 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as OmOsRouteImport } from './routes/om-os'
+import { Route as PrivatRengoeringHelsingoerRouteImport } from './routes/privat-rengoering-helsingoer'
+import { Route as PrivatRengoeringHornbaekRouteImport } from './routes/privat-rengoering-hornbaek'
+import { Route as PrivatRengoeringNordsjaellandRouteImport } from './routes/privat-rengoering-nordsjaelland'
+import { Route as RengoeringshjaelpHelsingoerRouteImport } from './routes/rengoeringshjaelp-helsingoer'
 import { Route as SaadanFungererDetRouteImport } from './routes/saadan-fungerer-det'
 import { Route as YdelserRouteImport } from './routes/ydelser'
 
@@ -30,6 +34,30 @@ const OmOsRoute = OmOsRouteImport.update({
   path: '/om-os',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivatRengoeringHelsingoerRoute =
+  PrivatRengoeringHelsingoerRouteImport.update({
+    id: '/privat-rengoering-helsingoer',
+    path: '/privat-rengoering-helsingoer',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PrivatRengoeringHornbaekRoute =
+  PrivatRengoeringHornbaekRouteImport.update({
+    id: '/privat-rengoering-hornbaek',
+    path: '/privat-rengoering-hornbaek',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PrivatRengoeringNordsjaellandRoute =
+  PrivatRengoeringNordsjaellandRouteImport.update({
+    id: '/privat-rengoering-nordsjaelland',
+    path: '/privat-rengoering-nordsjaelland',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const RengoeringshjaelpHelsingoerRoute =
+  RengoeringshjaelpHelsingoerRouteImport.update({
+    id: '/rengoeringshjaelp-helsingoer',
+    path: '/rengoeringshjaelp-helsingoer',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const SaadanFungererDetRoute = SaadanFungererDetRouteImport.update({
   id: '/saadan-fungerer-det',
   path: '/saadan-fungerer-det',
@@ -45,6 +73,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/kontakt': typeof KontaktRoute
   '/om-os': typeof OmOsRoute
+  '/privat-rengoering-helsingoer': typeof PrivatRengoeringHelsingoerRoute
+  '/privat-rengoering-hornbaek': typeof PrivatRengoeringHornbaekRoute
+  '/privat-rengoering-nordsjaelland': typeof PrivatRengoeringNordsjaellandRoute
+  '/rengoeringshjaelp-helsingoer': typeof RengoeringshjaelpHelsingoerRoute
   '/saadan-fungerer-det': typeof SaadanFungererDetRoute
   '/ydelser': typeof YdelserRoute
 }
@@ -52,6 +84,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/kontakt': typeof KontaktRoute
   '/om-os': typeof OmOsRoute
+  '/privat-rengoering-helsingoer': typeof PrivatRengoeringHelsingoerRoute
+  '/privat-rengoering-hornbaek': typeof PrivatRengoeringHornbaekRoute
+  '/privat-rengoering-nordsjaelland': typeof PrivatRengoeringNordsjaellandRoute
+  '/rengoeringshjaelp-helsingoer': typeof RengoeringshjaelpHelsingoerRoute
   '/saadan-fungerer-det': typeof SaadanFungererDetRoute
   '/ydelser': typeof YdelserRoute
 }
@@ -60,19 +96,45 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/kontakt': typeof KontaktRoute
   '/om-os': typeof OmOsRoute
+  '/privat-rengoering-helsingoer': typeof PrivatRengoeringHelsingoerRoute
+  '/privat-rengoering-hornbaek': typeof PrivatRengoeringHornbaekRoute
+  '/privat-rengoering-nordsjaelland': typeof PrivatRengoeringNordsjaellandRoute
+  '/rengoeringshjaelp-helsingoer': typeof RengoeringshjaelpHelsingoerRoute
   '/saadan-fungerer-det': typeof SaadanFungererDetRoute
   '/ydelser': typeof YdelserRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/kontakt' | '/om-os' | '/saadan-fungerer-det' | '/ydelser'
+  fullPaths:
+    | '/'
+    | '/kontakt'
+    | '/om-os'
+    | '/privat-rengoering-helsingoer'
+    | '/privat-rengoering-hornbaek'
+    | '/privat-rengoering-nordsjaelland'
+    | '/rengoeringshjaelp-helsingoer'
+    | '/saadan-fungerer-det'
+    | '/ydelser'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/kontakt' | '/om-os' | '/saadan-fungerer-det' | '/ydelser'
+  to:
+    | '/'
+    | '/kontakt'
+    | '/om-os'
+    | '/privat-rengoering-helsingoer'
+    | '/privat-rengoering-hornbaek'
+    | '/privat-rengoering-nordsjaelland'
+    | '/rengoeringshjaelp-helsingoer'
+    | '/saadan-fungerer-det'
+    | '/ydelser'
   id:
     | '__root__'
     | '/'
     | '/kontakt'
     | '/om-os'
+    | '/privat-rengoering-helsingoer'
+    | '/privat-rengoering-hornbaek'
+    | '/privat-rengoering-nordsjaelland'
+    | '/rengoeringshjaelp-helsingoer'
     | '/saadan-fungerer-det'
     | '/ydelser'
   fileRoutesById: FileRoutesById
@@ -81,6 +143,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   KontaktRoute: typeof KontaktRoute
   OmOsRoute: typeof OmOsRoute
+  PrivatRengoeringHelsingoerRoute: typeof PrivatRengoeringHelsingoerRoute
+  PrivatRengoeringHornbaekRoute: typeof PrivatRengoeringHornbaekRoute
+  PrivatRengoeringNordsjaellandRoute: typeof PrivatRengoeringNordsjaellandRoute
+  RengoeringshjaelpHelsingoerRoute: typeof RengoeringshjaelpHelsingoerRoute
   SaadanFungererDetRoute: typeof SaadanFungererDetRoute
   YdelserRoute: typeof YdelserRoute
 }
@@ -108,6 +174,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OmOsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privat-rengoering-helsingoer': {
+      id: '/privat-rengoering-helsingoer'
+      path: '/privat-rengoering-helsingoer'
+      fullPath: '/privat-rengoering-helsingoer'
+      preLoaderRoute: typeof PrivatRengoeringHelsingoerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privat-rengoering-hornbaek': {
+      id: '/privat-rengoering-hornbaek'
+      path: '/privat-rengoering-hornbaek'
+      fullPath: '/privat-rengoering-hornbaek'
+      preLoaderRoute: typeof PrivatRengoeringHornbaekRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privat-rengoering-nordsjaelland': {
+      id: '/privat-rengoering-nordsjaelland'
+      path: '/privat-rengoering-nordsjaelland'
+      fullPath: '/privat-rengoering-nordsjaelland'
+      preLoaderRoute: typeof PrivatRengoeringNordsjaellandRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rengoeringshjaelp-helsingoer': {
+      id: '/rengoeringshjaelp-helsingoer'
+      path: '/rengoeringshjaelp-helsingoer'
+      fullPath: '/rengoeringshjaelp-helsingoer'
+      preLoaderRoute: typeof RengoeringshjaelpHelsingoerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/saadan-fungerer-det': {
       id: '/saadan-fungerer-det'
       path: '/saadan-fungerer-det'
@@ -129,6 +223,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   KontaktRoute: KontaktRoute,
   OmOsRoute: OmOsRoute,
+  PrivatRengoeringHelsingoerRoute: PrivatRengoeringHelsingoerRoute,
+  PrivatRengoeringHornbaekRoute: PrivatRengoeringHornbaekRoute,
+  PrivatRengoeringNordsjaellandRoute: PrivatRengoeringNordsjaellandRoute,
+  RengoeringshjaelpHelsingoerRoute: RengoeringshjaelpHelsingoerRoute,
   SaadanFungererDetRoute: SaadanFungererDetRoute,
   YdelserRoute: YdelserRoute,
 }

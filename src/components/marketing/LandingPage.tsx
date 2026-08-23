@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import heroInterior from "../../assets/hero-interior.jpg";
 
 type LandingPageProps = {
@@ -11,25 +11,30 @@ type LandingPageProps = {
 };
 
 const areaOptions = [
-  { label: "Op til 80 m²", hours: 2 },
-  { label: "80-120 m²", hours: 2.5 },
-  { label: "120-160 m²", hours: 3 },
-  { label: "160-220 m²", hours: 4 },
-  { label: "220+ m²", hours: 5 },
+  "Op til 80 m²",
+  "80-120 m²",
+  "120-160 m²",
+  "160-220 m²",
+  "220+ m²",
 ];
 
 const bathroomOptions = [
-  { label: "1 toilet/bad", extra: 0 },
-  { label: "2 toiletter/bade", extra: 0.5 },
-  { label: "3+ toiletter/bade", extra: 1 },
+  "1 toilet/bad",
+  "2 toiletter/bade",
+  "3+ toiletter/bade",
 ];
 
 const frequencyOptions = [
-  { label: "Hver uge", multiplier: 1 },
-  { label: "Hver 14. dag", multiplier: 1.08 },
+  "Hver uge",
+  "Hver 14. dag",
 ];
 
-const internalHourlyRate = 320;
+const priorityOptions = [
+  "Stabil fast hjælp",
+  "Grundig rengøring",
+  "Tryg person i hjemmet",
+  "Let hverdag",
+];
 
 export function LandingPage({
   areaLabel,
@@ -54,10 +59,10 @@ export function LandingPage({
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <a
-                href="#pris"
+                href="#vurdering"
                 className="inline-flex items-center justify-center bg-primary text-primary-foreground py-3 px-6 rounded-sm text-sm font-medium transition-transform hover:-translate-y-0.5"
               >
-                Beregn ca. pris
+                Få vurderet dit hjem
               </a>
               <Link
                 to="/kontakt"
@@ -94,7 +99,7 @@ export function LandingPage({
             </div>
           </div>
 
-          <LandingCalculator />
+          <NeedAssessment />
         </div>
       </section>
 
@@ -105,14 +110,14 @@ export function LandingPage({
               Sådan kommer du videre
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Brug beregneren som pejlemærke. Derefter kontakter vi dig med en konkret vurdering
-              af hjemmet og en pris pr. besøg.
+              Brug vurderingen som første skridt. Derefter kontakter vi dig med en konkret
+              vurdering af hjemmet og et forslag til fast aftale.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            <Step number="01" title="Beregn ca. pris" text="Vælg størrelse, badeværelser og frekvens." />
+            <Step number="01" title="Fortæl om hjemmet" text="Vælg størrelse, badeværelser og frekvens." />
             <Step number="02" title="Send forespørgsel" text="Fortæl kort om hjemmet og dine ønsker." />
-            <Step number="03" title="Få huspris" text="Vi vurderer opgaven og giver et konkret forslag." />
+            <Step number="03" title="Få konkret forslag" text="Vi vurderer opgaven og vender tilbage med næste skridt." />
           </div>
         </div>
       </section>
@@ -135,39 +140,28 @@ export function LandingPage({
   );
 }
 
-function LandingCalculator() {
+function NeedAssessment() {
   const [areaIndex, setAreaIndex] = useState(1);
   const [bathroomIndex, setBathroomIndex] = useState(1);
   const [frequencyIndex, setFrequencyIndex] = useState(0);
   const [startup, setStartup] = useState(false);
-
-  const estimate = useMemo(() => {
-    const base = areaOptions[areaIndex].hours;
-    const bathrooms = bathroomOptions[bathroomIndex].extra;
-    const extras = startup ? 0.75 : 0;
-    const multiplier = frequencyOptions[frequencyIndex].multiplier;
-    const hours = Math.max(2, (base + bathrooms + extras) * multiplier);
-    const roundedLow = Math.round(hours * 2) / 2;
-    const roundedHigh = roundedLow + 0.5;
-    const low = Math.round(roundedLow * internalHourlyRate);
-    const high = Math.round(roundedHigh * internalHourlyRate);
-    return { roundedLow, roundedHigh, low, high };
-  }, [areaIndex, bathroomIndex, frequencyIndex, startup]);
+  const [priorityIndex, setPriorityIndex] = useState(0);
 
   return (
-    <div id="pris" className="bg-background p-6 md:p-8 rounded-sm ring-1 ring-black/5">
+    <div id="vurdering" className="bg-background p-6 md:p-8 rounded-sm ring-1 ring-black/5">
       <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent mb-4 block">
-        Prispejlemærke
+        Behovsvurdering
       </span>
-      <h2 className="text-3xl font-serif font-medium mb-3">Få et ca.-billede</h2>
+      <h2 className="text-3xl font-serif font-medium mb-3">Find den rigtige aftale</h2>
       <p className="text-sm text-muted-foreground leading-relaxed mb-8">
-        Estimatet er ikke en offentlig timepris. Endelig pris gives som individuel huspris.
+        Svarene hjælper os med at vurdere opgaven, så vi kan vende tilbage med en individuel
+        huspris og en aftale, der passer til hjemmet.
       </p>
 
       <ButtonGroup label="Boligstørrelse">
         {areaOptions.map((option, index) => (
-          <Choice key={option.label} active={areaIndex === index} onClick={() => setAreaIndex(index)}>
-            {option.label}
+          <Choice key={option} active={areaIndex === index} onClick={() => setAreaIndex(index)}>
+            {option}
           </Choice>
         ))}
       </ButtonGroup>
@@ -175,11 +169,11 @@ function LandingCalculator() {
       <ButtonGroup label="Toiletter/badeværelser">
         {bathroomOptions.map((option, index) => (
           <Choice
-            key={option.label}
+            key={option}
             active={bathroomIndex === index}
             onClick={() => setBathroomIndex(index)}
           >
-            {option.label}
+            {option}
           </Choice>
         ))}
       </ButtonGroup>
@@ -187,11 +181,23 @@ function LandingCalculator() {
       <ButtonGroup label="Frekvens">
         {frequencyOptions.map((option, index) => (
           <Choice
-            key={option.label}
+            key={option}
             active={frequencyIndex === index}
             onClick={() => setFrequencyIndex(index)}
           >
-            {option.label}
+            {option}
+          </Choice>
+        ))}
+      </ButtonGroup>
+
+      <ButtonGroup label="Vigtigst for dig">
+        {priorityOptions.map((option, index) => (
+          <Choice
+            key={option}
+            active={priorityIndex === index}
+            onClick={() => setPriorityIndex(index)}
+          >
+            {option}
           </Choice>
         ))}
       </ButtonGroup>
@@ -208,14 +214,16 @@ function LandingCalculator() {
 
       <div className="bg-surface p-5 rounded-sm ring-1 ring-black/5">
         <div className="text-xs uppercase tracking-[0.16em] text-muted-foreground mb-2">
-          Ca. pr. besøg
+          Foreløbig vurdering
         </div>
-        <div className="text-3xl font-medium text-foreground mb-2">
-          {estimate.low}-{estimate.high} kr. ekskl. moms
+        <div className="text-2xl font-serif font-medium text-foreground mb-3">
+          Fast rengøring {frequencyOptions[frequencyIndex].toLowerCase()}
         </div>
         <p className="text-sm text-muted-foreground mb-5">
-          Ca. {estimate.roundedLow}-{estimate.roundedHigh} timers rengøring. Endelig pris gives
-          som huspris efter konkret vurdering.
+          Et hjem på {areaOptions[areaIndex].toLowerCase()} med {bathroomOptions[
+            bathroomIndex
+          ].toLowerCase()} vurderes bedst med en konkret gennemgang, hvor vi også tager højde
+          for stand, adgang og særlige ønsker.
         </p>
         <Link
           to="/kontakt"

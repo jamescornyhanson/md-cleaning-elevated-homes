@@ -82,13 +82,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Privat rengøring i Helsingør og Nordsjælland. Beregn ca. pris og få et uforpligtende tilbud fra MD Cleaning.",
+          "Privat rengøring i Helsingør og Nordsjælland. Få en personlig vurdering og et uforpligtende tilbud fra MD Cleaning.",
       },
       { property: "og:title", content: "MD Cleaning — Privatrengøring i Nordsjælland" },
       {
         property: "og:description",
         content:
-          "Privat rengøring i Helsingør og Nordsjælland. Beregn ca. pris og få et uforpligtende tilbud fra MD Cleaning.",
+          "Privat rengøring i Helsingør og Nordsjælland. Få en personlig vurdering og et uforpligtende tilbud fra MD Cleaning.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -152,12 +152,6 @@ function Header() {
         <nav className="hidden md:flex items-center gap-8">
           <NavLink to="/">Forside</NavLink>
           <NavLink to="/ydelser">Ydelser</NavLink>
-          <a
-            href="/#prisberegner"
-            className="text-sm font-medium tracking-wide uppercase text-muted-foreground transition-transform hover:text-foreground hover:translate-y-px"
-          >
-            Prisberegner
-          </a>
           <NavLink to="/saadan-fungerer-det">Sådan fungerer det</NavLink>
           <NavLink to="/om-os">Om os</NavLink>
           <Link
@@ -203,13 +197,6 @@ function Header() {
             >
               Sådan fungerer det
             </Link>
-            <a
-              href="/#prisberegner"
-              onClick={() => setMobileOpen(false)}
-              className="text-sm font-medium tracking-wide uppercase text-muted-foreground hover:text-foreground"
-            >
-              Prisberegner
-            </a>
             <Link
               to="/om-os"
               onClick={() => setMobileOpen(false)}

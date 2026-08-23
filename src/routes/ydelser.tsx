@@ -41,21 +41,6 @@ function Ydelser() {
         </div>
       </section>
 
-      {/* Pricing notice */}
-      <section className="py-8 px-6 bg-foreground text-background">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <p className="text-sm font-medium uppercase tracking-wide">
-            Pris gives som individuel huspris - minimum 2 timers rengøring pr. besøg
-          </p>
-          <Link
-            to="/kontakt"
-            className="inline-flex items-center text-sm font-medium uppercase tracking-wide underline underline-offset-4 hover:no-underline"
-          >
-            Få et tilbud
-          </Link>
-        </div>
-      </section>
-
       {/* Main services */}
       <section className="py-24 px-6 bg-surface ring-1 ring-black/5">
         <div className="max-w-7xl mx-auto space-y-24">
@@ -64,11 +49,10 @@ function Ydelser() {
             title="Standardrengøring"
             description="Vores kerneydelse. En fast aftale med ugentlig eller 14-dages frekvens, hvor vi lærer dit hjem og dine faste ønsker at kende."
             details={[
-              "Ca.-pris baseret på m², badeværelser og frekvens",
+              "Pris fastsættes efter individuel vurdering af hjemmet",
               "Tydelig aftale om faste opgaver",
               "Tilpasset dit hjem og dine ønsker",
             ]}
-            price="Fast pris pr. besøg"
           />
 
           <ServiceBlock
@@ -80,7 +64,6 @@ function Ydelser() {
               "Typisk mere tid end et almindeligt fast besøg",
               "Kan også bestilles som selvstændig engangsydelse",
             ]}
-            price="+25-50% af standardpris"
           />
 
           <ServiceBlock
@@ -92,7 +75,6 @@ function Ydelser() {
               "Flytterengøring",
               "Rengøring efter håndværkere",
             ]}
-            price="Pris efter m² og stand"
           />
         </div>
       </section>
@@ -142,20 +124,18 @@ function ServiceBlock({
   title,
   description,
   details,
-  price,
 }: {
   number: string;
   title: string;
   description: string;
   details: string[];
-  price: string;
 }) {
   return (
     <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-start">
       <div className="md:col-span-3">
         <span className="text-sm font-serif italic text-accent">{number}</span>
       </div>
-      <div className="md:col-span-6">
+      <div className="md:col-span-9">
         <h2 className="text-2xl md:text-3xl font-serif font-medium mb-4">{title}</h2>
         <p className="text-muted-foreground leading-relaxed mb-6">{description}</p>
         <ul className="space-y-3">
@@ -166,10 +146,6 @@ function ServiceBlock({
             </li>
           ))}
         </ul>
-      </div>
-      <div className="md:col-span-3 md:text-right">
-        <span className="text-xs uppercase tracking-tighter text-muted-foreground block mb-2">Pris</span>
-        <span className="font-medium italic">{price}</span>
       </div>
     </div>
   );

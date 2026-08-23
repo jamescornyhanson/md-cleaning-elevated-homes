@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
 import heroInterior from "../assets/hero-interior.jpg";
 
 export const Route = createFileRoute("/")({
@@ -9,13 +8,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Privat rengøring i Helsingør og Nordsjælland. Få en enkel ca.-pris på rengøring af dit hjem og anmod om et uforpligtende tilbud.",
+          "Privat rengøring i Helsingør og Nordsjælland. Få en personlig vurdering og et uforpligtende tilbud fra MD Cleaning.",
       },
       { property: "og:title", content: "MD Cleaning - Privat rengøring i Helsingør" },
       {
         property: "og:description",
         content:
-          "Tryg privat rengøring til dit hjem. Beregn en ca.-pris og få et uforpligtende tilbud fra MD Cleaning.",
+          "Tryg privat rengøring til dit hjem. Få en personlig vurdering og et uforpligtende tilbud fra MD Cleaning.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -25,28 +24,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Forside,
 });
-
-const areaOptions = [
-  { label: "Op til 80 m²", hours: 2 },
-  { label: "80-120 m²", hours: 2.5 },
-  { label: "120-160 m²", hours: 3 },
-  { label: "160-220 m²", hours: 4 },
-  { label: "220+ m²", hours: 5 },
-];
-
-const bathroomOptions = [
-  { label: "1 toilet/bad", extra: 0 },
-  { label: "2 toiletter/bade", extra: 0.5 },
-  { label: "3+ toiletter/bade", extra: 1 },
-];
-
-const frequencyOptions = [
-  { label: "Hver uge", multiplier: 1 },
-  { label: "Hver 14. dag", multiplier: 1.08 },
-  { label: "Engangsbesøg", multiplier: 1.2 },
-];
-
-const internalHourlyRate = 320;
 
 function Forside() {
   return (
@@ -65,22 +42,22 @@ function Forside() {
               mennesker, du kan føle dig tryg ved at lukke ind.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <a
-                href="#prisberegner"
-                className="inline-flex items-center justify-center bg-primary text-primary-foreground py-3 px-6 rounded-sm text-sm font-medium transition-transform hover:-translate-y-0.5"
-              >
-                Beregn ca. pris
-              </a>
               <Link
                 to="/kontakt"
+                className="inline-flex items-center justify-center bg-primary text-primary-foreground py-3 px-6 rounded-sm text-sm font-medium transition-transform hover:-translate-y-0.5"
+              >
+                Få en personlig vurdering
+              </Link>
+              <Link
+                to="/ydelser"
                 className="inline-flex items-center justify-center ring-1 ring-primary/20 text-foreground py-3 px-6 rounded-sm text-sm font-medium hover:bg-surface transition-colors"
               >
-                Få et uforpligtende tilbud
+                Se ydelser
               </Link>
             </div>
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-muted-foreground">
-              <TrustPoint title="Fra 2 timer" text="Minimum pr. besøg" />
-              <TrustPoint title="Individuel pris" text="Baseret på dit hjem" />
+              <TrustPoint title="Kvalitet først" text="Vi tager kun opgaver, vi kan stå inde for" />
+              <TrustPoint title="Personlig vurdering" text="Tilpasset dit hjem og dine ønsker" />
               <TrustPoint title="Fast aftale" text="Uge eller hver 14. dag" />
             </div>
           </div>
@@ -120,7 +97,31 @@ function Forside() {
             </div>
           </div>
 
-          <PriceCalculator />
+          <div className="bg-background p-6 md:p-8 rounded-sm ring-1 ring-black/5">
+            <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent mb-4 block">
+              Din vurdering
+            </span>
+            <h2 className="text-3xl font-serif font-medium mb-3">
+              Sådan finder vi den rigtige løsning
+            </h2>
+            <p className="text-sm text-muted-foreground leading-relaxed mb-8">
+              Hvert hjem er forskelligt. Derfor lægger vi vægt på en grundig vurdering, før vi
+              aftaler omfang og pris. Du får et skræddersyet forslag — ikke en standardpakke.
+            </p>
+
+            <ol className="space-y-5 mb-8">
+              <Step number="1" text="Du beskriver dit hjem og dine ønsker." />
+              <Step number="2" text="Vi vurderer omfang, frekvens og særlige hensyn." />
+              <Step number="3" text="Du modtager et uforpligtende tilbud med fast pris pr. besøg." />
+            </ol>
+
+            <Link
+              to="/kontakt"
+              className="inline-flex items-center justify-center bg-primary text-primary-foreground py-3 px-5 rounded-sm text-sm font-medium transition-transform hover:-translate-y-0.5"
+            >
+              Anmod om vurdering
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -132,7 +133,7 @@ function Forside() {
             </h2>
             <p className="text-muted-foreground leading-relaxed">
               Sitet skal kunne bruges til Google Ads og lokale landingssider. Derfor holder vi
-              budskabet enkelt: tryg privat rengøring, tydelig pris og nem kontakt.
+              budskabet enkelt: tryg privat rengøring, tydelig aftale og nem kontakt.
             </p>
           </div>
 
@@ -146,8 +147,8 @@ function Forside() {
               description="Privat rengøring handler om tillid. Vi lægger vægt på ordentlighed, stabilitet og god dialog."
             />
             <ServiceCard
-              title="Pris der er til at forstå"
-              description="Vores beregner giver et ca.-billede. Endelig pris aftales efter hjemmets behov og opgaver."
+              title="Aftale du kan forstå"
+              description="Du får et klart overblik over opgaver, frekvens og pris — uden småttryk eller overraskelser."
             />
           </div>
         </div>
@@ -156,171 +157,20 @@ function Forside() {
       <section className="py-20 px-6 bg-warm ring-1 ring-black/5">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-serif font-medium mb-4">
-            Klar til en ca.-pris på dit hjem?
+            Klar til en vurdering af dit hjem?
           </h2>
           <p className="text-muted-foreground mb-10">
-            Brug beregneren som pejlemærke, eller send os en besked, så vender vi tilbage med et
-            konkret forslag.
+            Fortæl os om dit hjem, så vender vi tilbage med et konkret forslag og fast pris.
           </p>
-          <a
-            href="#prisberegner"
+          <Link
+            to="/kontakt"
             className="inline-flex items-center bg-primary text-primary-foreground py-3 px-8 rounded-sm text-sm font-medium transition-transform hover:-translate-y-0.5"
           >
-            Gå til prisberegner
-          </a>
+            Anmod om vurdering
+          </Link>
         </div>
       </section>
     </>
-  );
-}
-
-function PriceCalculator() {
-  const [areaIndex, setAreaIndex] = useState(1);
-  const [bathroomIndex, setBathroomIndex] = useState(1);
-  const [frequencyIndex, setFrequencyIndex] = useState(0);
-  const [startup, setStartup] = useState(false);
-  const [pets, setPets] = useState(false);
-
-  const estimate = useMemo(() => {
-    const base = areaOptions[areaIndex].hours;
-    const bathrooms = bathroomOptions[bathroomIndex].extra;
-    const extras = (startup ? 0.75 : 0) + (pets ? 0.25 : 0);
-    const multiplier = frequencyOptions[frequencyIndex].multiplier;
-    const hours = Math.max(2, (base + bathrooms + extras) * multiplier);
-    const roundedLow = Math.round(hours * 2) / 2;
-    const roundedHigh = roundedLow + 0.5;
-    const low = Math.round(roundedLow * internalHourlyRate);
-    const high = Math.round(roundedHigh * internalHourlyRate);
-
-    return { roundedLow, roundedHigh, low, high };
-  }, [areaIndex, bathroomIndex, frequencyIndex, startup, pets]);
-
-  return (
-    <div id="prisberegner" className="bg-background p-6 md:p-8 rounded-sm ring-1 ring-black/5">
-      <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent mb-4 block">
-        Prisberegner
-      </span>
-      <h2 className="text-3xl font-serif font-medium mb-3">Hvad koster rengøring ca.?</h2>
-      <p className="text-sm text-muted-foreground leading-relaxed mb-8">
-        Beregneren er et pejlemærke til privat rengøring. Vi giver altid en individuel pris ud
-        fra hjemmets størrelse, badeværelser, stand, opgaver og frekvens.
-      </p>
-
-      <CalculatorGroup label="Hvor stort er hjemmet?">
-        {areaOptions.map((option, index) => (
-          <ChoiceButton
-            key={option.label}
-            active={areaIndex === index}
-            onClick={() => setAreaIndex(index)}
-          >
-            {option.label}
-          </ChoiceButton>
-        ))}
-      </CalculatorGroup>
-
-      <CalculatorGroup label="Hvor mange toiletter/badeværelser?">
-        {bathroomOptions.map((option, index) => (
-          <ChoiceButton
-            key={option.label}
-            active={bathroomIndex === index}
-            onClick={() => setBathroomIndex(index)}
-          >
-            {option.label}
-          </ChoiceButton>
-        ))}
-      </CalculatorGroup>
-
-      <CalculatorGroup label="Hvor ofte ønsker du rengøring?">
-        {frequencyOptions.map((option, index) => (
-          <ChoiceButton
-            key={option.label}
-            active={frequencyIndex === index}
-            onClick={() => setFrequencyIndex(index)}
-          >
-            {option.label}
-          </ChoiceButton>
-        ))}
-      </CalculatorGroup>
-
-      <div className="grid sm:grid-cols-2 gap-3 mb-8">
-        <ToggleOption checked={startup} onChange={setStartup} label="Grundig opstart første gang" />
-        <ToggleOption checked={pets} onChange={setPets} label="Kæledyr i hjemmet" />
-      </div>
-
-      <div className="bg-surface p-5 rounded-sm ring-1 ring-black/5">
-        <div className="text-xs uppercase tracking-[0.16em] text-muted-foreground mb-2">
-          Ca. estimat pr. besøg
-        </div>
-        <div className="text-3xl font-medium text-foreground mb-2">
-          {estimate.low}-{estimate.high} kr. ekskl. moms
-        </div>
-        <p className="text-sm text-muted-foreground mb-5">
-          Ca. {estimate.roundedLow}-{estimate.roundedHigh} timers rengøring pr. besøg. Den
-          endelige pris gives som huspris efter konkret vurdering.
-        </p>
-        <Link
-          to="/kontakt"
-          className="inline-flex items-center justify-center bg-primary text-primary-foreground py-3 px-5 rounded-sm text-sm font-medium transition-transform hover:-translate-y-0.5"
-        >
-          Få konkret tilbud
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-function CalculatorGroup({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="mb-7">
-      <div className="text-sm font-medium mb-3">{label}</div>
-      <div className="flex flex-wrap gap-2">{children}</div>
-    </div>
-  );
-}
-
-function ChoiceButton({
-  active,
-  children,
-  onClick,
-}: {
-  active: boolean;
-  children: React.ReactNode;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`px-3 py-2 rounded-sm text-sm ring-1 transition-colors ${
-        active
-          ? "bg-primary text-primary-foreground ring-primary"
-          : "bg-background text-foreground ring-black/10 hover:bg-surface"
-      }`}
-    >
-      {children}
-    </button>
-  );
-}
-
-function ToggleOption({
-  checked,
-  label,
-  onChange,
-}: {
-  checked: boolean;
-  label: string;
-  onChange: (checked: boolean) => void;
-}) {
-  return (
-    <label className="flex items-center gap-3 text-sm p-3 rounded-sm ring-1 ring-black/5 bg-background cursor-pointer">
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={(event) => onChange(event.target.checked)}
-        className="size-4 accent-[var(--primary)]"
-      />
-      {label}
-    </label>
   );
 }
 
@@ -348,5 +198,16 @@ function ServiceCard({ title, description }: { title: string; description: strin
       <h3 className="text-xl font-serif font-medium mb-3">{title}</h3>
       <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
     </div>
+  );
+}
+
+function Step({ number, text }: { number: string; text: string }) {
+  return (
+    <li className="flex items-start gap-4">
+      <span className="flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-full ring-1 ring-black/10 text-xs font-medium text-foreground">
+        {number}
+      </span>
+      <span className="text-sm text-muted-foreground leading-relaxed pt-1">{text}</span>
+    </li>
   );
 }

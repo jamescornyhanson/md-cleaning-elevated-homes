@@ -146,6 +146,21 @@ function NeedAssessment() {
   const [frequencyIndex, setFrequencyIndex] = useState(0);
   const [startup, setStartup] = useState(false);
   const [priorityIndex, setPriorityIndex] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
+  const [leadData, setLeadData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+  });
+
+  const handleLeadChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLeadData({ ...leadData, [event.target.name]: event.target.value });
+  };
+
+  const handleLeadSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmitted(true);
+  };
 
   return (
     <div id="vurdering" className="bg-background p-6 md:p-8 rounded-sm ring-1 ring-black/5">
@@ -202,7 +217,7 @@ function NeedAssessment() {
         ))}
       </ButtonGroup>
 
-      <label className="flex items-center gap-3 text-sm p-3 mb-8 rounded-sm ring-1 ring-black/5 bg-background cursor-pointer">
+      <label className="flex items-center gap-3 text-sm p-3 mb-6 rounded-sm ring-1 ring-black/5 bg-background cursor-pointer">
         <input
           type="checkbox"
           checked={startup}
@@ -212,26 +227,74 @@ function NeedAssessment() {
         Grundig opstart første gang
       </label>
 
-      <div className="bg-surface p-5 rounded-sm ring-1 ring-black/5">
-        <div className="text-xs uppercase tracking-[0.16em] text-muted-foreground mb-2">
-          Foreløbig vurdering
+      {submitted ? (
+        <div className="bg-surface p-6 rounded-sm ring-1 ring-black/5">
+          <div className="text-xs uppercase tracking-[0.16em] text-muted-foreground mb-2">
+            Tak
+          </div>
+          <div className="text-2xl font-serif font-medium text-foreground mb-3">
+            Vi har modtaget din forespørgsel
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Vi vender tilbage med næste skridt og en konkret vurdering af hjemmet.
+          </p>
         </div>
-        <div className="text-2xl font-serif font-medium text-foreground mb-3">
-          Fast rengøring {frequencyOptions[frequencyIndex].toLowerCase()}
-        </div>
-        <p className="text-sm text-muted-foreground mb-5">
-          Et hjem på {areaOptions[areaIndex].toLowerCase()} med {bathroomOptions[
-            bathroomIndex
-          ].toLowerCase()} vurderes bedst med en konkret gennemgang, hvor vi også tager højde
-          for stand, adgang og særlige ønsker.
-        </p>
-        <Link
-          to="/kontakt"
-          className="inline-flex items-center justify-center bg-primary text-primary-foreground py-3 px-5 rounded-sm text-sm font-medium transition-transform hover:-translate-y-0.5"
-        >
-          Få konkret tilbud
-        </Link>
-      </div>
+      ) : (
+        <form onSubmit={handleLeadSubmit} className="bg-surface p-5 rounded-sm ring-1 ring-black/5">
+          <div className="text-xs uppercase tracking-[0.16em] text-muted-foreground mb-2">
+            Foreløbig vurdering
+          </div>
+          <div className="text-2xl font-serif font-medium text-foreground mb-3">
+            Fast rengøring {frequencyOptions[frequencyIndex].toLowerCase()}
+          </div>
+          <p className="text-sm text-muted-foreground mb-5">
+            Et hjem på {areaOptions[areaIndex].toLowerCase()} med {bathroomOptions[
+              bathroomIndex
+            ].toLowerCase()} vurderes bedst med en konkret gennemgang, hvor vi også tager højde
+            for stand, adgang og særlige ønsker.
+          </p>
+
+          <div className="grid gap-3 mb-5">
+            <input
+              name="name"
+              type="text"
+              required
+              value={leadData.name}
+              onChange={handleLeadChange}
+              placeholder="Navn"
+              className="w-full bg-background ring-1 ring-black/5 rounded-sm px-4 py-3 text-sm focus:outline-none focus:ring-accent/40"
+            />
+            <input
+              name="phone"
+              type="tel"
+              required
+              value={leadData.phone}
+              onChange={handleLeadChange}
+              placeholder="Telefonnummer"
+              className="w-full bg-background ring-1 ring-black/5 rounded-sm px-4 py-3 text-sm focus:outline-none focus:ring-accent/40"
+            />
+            <input
+              name="email"
+              type="email"
+              required
+              value={leadData.email}
+              onChange={handleLeadChange}
+              placeholder="E-mail"
+              className="w-full bg-background ring-1 ring-black/5 rounded-sm px-4 py-3 text-sm focus:outline-none focus:ring-accent/40"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full inline-flex items-center justify-center bg-primary text-primary-foreground py-3 px-5 rounded-sm text-sm font-medium transition-transform hover:-translate-y-0.5"
+          >
+            Få min vurdering
+          </button>
+          <p className="text-xs text-muted-foreground leading-relaxed mt-4">
+            Vi bruger kun oplysningerne til at kontakte dig om rengøring af dit hjem.
+          </p>
+        </form>
+      )}
     </div>
   );
 }

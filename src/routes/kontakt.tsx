@@ -31,6 +31,8 @@ function Kontakt() {
     phone: "",
     address: "",
     housingType: "",
+    squareMeters: "",
+    bathrooms: "2",
     frequency: "ugentlig",
     message: "",
   });
@@ -174,6 +176,49 @@ function Kontakt() {
                   onChange={handleChange}
                   className="w-full bg-background/50 ring-1 ring-black/5 rounded-sm px-4 py-3 text-sm focus:outline-none focus:ring-accent/40"
                 />
+              </div>
+
+              <div className="space-y-2">
+                <label
+                  htmlFor="squareMeters"
+                  className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground ml-1"
+                >
+                  Ca. antal m²
+                </label>
+                <select
+                  id="squareMeters"
+                  name="squareMeters"
+                  value={formData.squareMeters}
+                  onChange={handleChange}
+                  className="w-full bg-background/50 ring-1 ring-black/5 rounded-sm px-4 py-3 text-sm focus:outline-none focus:ring-accent/40 appearance-none"
+                >
+                  <option value="">Vælg størrelse</option>
+                  <option value="0-80">Op til 80 m²</option>
+                  <option value="80-120">80-120 m²</option>
+                  <option value="120-160">120-160 m²</option>
+                  <option value="160-220">160-220 m²</option>
+                  <option value="220+">220+ m²</option>
+                </select>
+              </div>
+
+              <div className="space-y-2">
+                <label
+                  htmlFor="bathrooms"
+                  className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground ml-1"
+                >
+                  Toiletter/badeværelser
+                </label>
+                <select
+                  id="bathrooms"
+                  name="bathrooms"
+                  value={formData.bathrooms}
+                  onChange={handleChange}
+                  className="w-full bg-background/50 ring-1 ring-black/5 rounded-sm px-4 py-3 text-sm focus:outline-none focus:ring-accent/40 appearance-none"
+                >
+                  <option value="1">1 toilet/bad</option>
+                  <option value="2">2 toiletter/bade</option>
+                  <option value="3+">3+ toiletter/bade</option>
+                </select>
               </div>
 
               <div className="space-y-2 md:col-span-2">

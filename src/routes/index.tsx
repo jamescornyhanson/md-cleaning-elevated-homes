@@ -1,20 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
 import heroInterior from "../assets/hero-interior.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "MD Cleaning — Privatrengøring i Nordsjælland" },
+      { title: "MD Cleaning - Privat rengøring i Helsingør og Nordsjælland" },
       {
         name: "description",
         content:
-          "Eksklusiv privatrengøring i Helsingør, Hornbæk, Gilleleje og Fredensborg. Ro i sindet, tillid og kompromisløs kvalitet.",
+          "Privat rengøring i Helsingør og Nordsjælland. Få en enkel ca.-pris på rengøring af dit hjem og anmod om et uforpligtende tilbud.",
       },
-      { property: "og:title", content: "MD Cleaning — Privatrengøring i Nordsjælland" },
+      { property: "og:title", content: "MD Cleaning - Privat rengøring i Helsingør" },
       {
         property: "og:description",
         content:
-          "Eksklusiv privatrengøring i Helsingør, Hornbæk, Gilleleje og Fredensborg. Ro i sindet, tillid og kompromisløs kvalitet.",
+          "Tryg privat rengøring til dit hjem. Beregn en ca.-pris og få et uforpligtende tilbud fra MD Cleaning.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -25,182 +26,324 @@ export const Route = createFileRoute("/")({
   component: Forside,
 });
 
+const areaOptions = [
+  { label: "Op til 80 m²", hours: 2 },
+  { label: "80-120 m²", hours: 2.5 },
+  { label: "120-160 m²", hours: 3 },
+  { label: "160-220 m²", hours: 4 },
+  { label: "220+ m²", hours: 5 },
+];
+
+const bathroomOptions = [
+  { label: "1 toilet/bad", extra: 0 },
+  { label: "2 toiletter/bade", extra: 0.5 },
+  { label: "3+ toiletter/bade", extra: 1 },
+];
+
+const frequencyOptions = [
+  { label: "Hver uge", multiplier: 1 },
+  { label: "Hver 14. dag", multiplier: 1.08 },
+  { label: "Engangsbesøg", multiplier: 1.2 },
+];
+
 function Forside() {
   return (
     <>
-      {/* Hero */}
-      <section className="py-20 lg:py-32 px-6 bg-background">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-3xl">
-            <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent mb-6 block">
-              Helsingør & Nordsjælland
+      <section className="px-6 py-16 lg:py-24 bg-background">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-[1fr_0.85fr] gap-12 items-center">
+          <div className="max-w-2xl">
+            <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent mb-5 block">
+              Privat rengøring i Helsingør og Nordsjælland
             </span>
-            <h1 className="text-4xl md:text-6xl font-serif font-medium leading-tight text-balance mb-8">
-              Vi sælger ikke timer. Vi sælger ro i sindet for det krævende hjem.
+            <h1 className="text-4xl md:text-6xl font-serif font-medium leading-tight text-balance mb-7">
+              Vi passer godt på dit hjem.
             </h1>
-            <p className="text-lg leading-relaxed text-pretty max-w-[56ch] text-muted-foreground mb-10">
-              Eksklusiv privatrengøring for dig, der værdsætter diskretion, stabilitet og
-              kompromisløs kvalitet. Vi betjener de smukkeste hjem langs kysten fra
-              Snekkersten til Gilleleje.
+            <p className="text-lg leading-relaxed text-pretty max-w-[58ch] text-muted-foreground mb-8">
+              Fast privat rengøring for dig, der ønsker et rent hjem, tydelige aftaler og
+              mennesker, du kan føle dig tryg ved at lukke ind.
             </p>
-            <Link
-              to="/kontakt"
-              className="inline-flex items-center bg-foreground text-background py-3 pr-4 pl-3 rounded-sm text-sm font-medium ring-1 ring-foreground transition-transform hover:-translate-y-0.5"
-            >
-              <svg
-                className="size-4 mr-2 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href="#prisberegner"
+                className="inline-flex items-center justify-center bg-primary text-primary-foreground py-3 px-6 rounded-sm text-sm font-medium transition-transform hover:-translate-y-0.5"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-              </svg>
-              Anmod om et uforpligtende tilbud
-            </Link>
+                Beregn ca. pris
+              </a>
+              <Link
+                to="/kontakt"
+                className="inline-flex items-center justify-center ring-1 ring-primary/20 text-foreground py-3 px-6 rounded-sm text-sm font-medium hover:bg-surface transition-colors"
+              >
+                Få et uforpligtende tilbud
+              </Link>
+            </div>
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-muted-foreground">
+              <TrustPoint title="Fra 2 timer" text="Minimum pr. besøg" />
+              <TrustPoint title="Ca. 320 kr." text="Ekskl. moms pr. time" />
+              <TrustPoint title="Fast aftale" text="Ugentligt eller hver 14. dag" />
+            </div>
           </div>
-        </div>
-      </section>
 
-      {/* Image Feature */}
-      <section className="px-6 mb-24">
-        <div className="max-w-7xl mx-auto">
-          <img
-            src={heroInterior}
-            alt="Lyst nordisk interiør med morgenlys og linnedgardiner"
-            width={1920}
-            height={800}
-            className="w-full aspect-[21/9] object-cover rounded-sm ring-1 ring-black/5"
-            loading="eager"
-          />
-        </div>
-      </section>
-
-      {/* Positioning Statement */}
-      <section className="py-24 px-6 bg-foreground text-background">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl font-serif font-medium leading-snug text-balance">
-              Kvalitet kræver selektivitet
+            <img
+              src={heroInterior}
+              alt="Lyst og roligt hjem med rene overflader"
+              width={900}
+              height={1080}
+              className="w-full aspect-[4/5] object-cover rounded-sm ring-1 ring-black/5"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-6 bg-surface ring-1 ring-black/5">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.85fr_1fr] gap-14 items-start">
+          <div>
+            <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent mb-5 block">
+              Let at komme i gang
+            </span>
+            <h2 className="text-3xl md:text-4xl font-serif font-medium leading-tight mb-5">
+              En enkel løsning til et hjem, der skal fungere i hverdagen
             </h2>
-          </div>
-          <div className="space-y-6 text-background/80 font-light leading-relaxed">
-            <p>
-              Vi er ikke det billigste valg i markedet, og det er et bevidst valg. MD Cleaning
-              ligger i den øverste top af markedet på både pris og udførelse.
+            <p className="text-muted-foreground leading-relaxed mb-7">
+              Vi starter med en praktisk vurdering af hjemmets størrelse, antal badeværelser og
+              ønsket frekvens. Derefter får du et forslag, der passer til hverdagen og kan
+              leveres stabilt.
             </p>
-            <p>
-              Vi tager kun nye kunder ind, hvor vi kan garantere den kompromisløse standard, vi
-              er kendt for. Det er din sikkerhed for et fejlfrit resultat hver eneste gang.
-            </p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <InfoBox title="Privat rengøring" text="Køkken, bad, støv, gulve og faste opgaver." />
+              <InfoBox title="Tydelig pris" text="Vi regner i timer, men gør det let at forstå." />
+              <InfoBox title="Tryg kontakt" text="Du får en konkret vurdering før opstart." />
+              <InfoBox title="Lokal rute" text="Helsingør og opland med fokus på god ruteøkonomi." />
+            </div>
           </div>
+
+          <PriceCalculator />
         </div>
       </section>
 
-      {/* Services Teaser */}
-      <section className="py-24 px-6 bg-surface ring-1 ring-black/5">
+      <section className="py-20 px-6 bg-background">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-            <div className="max-w-xl">
-              <h2 className="text-3xl font-serif font-medium leading-tight text-balance mb-4">
-                Vores Ydelser
-              </h2>
-              <p className="text-muted-foreground text-pretty max-w-[48ch]">
-                Vi skræddersyr altid vores besøg, men tager udgangspunkt i en fast ramme for at
-                sikre kontinuitet.
-              </p>
-            </div>
-            <div className="text-sm font-medium text-accent italic">
-              Priser starter fra 580 kr. ekskl. moms (min. 2 timer)
-            </div>
+          <div className="max-w-2xl mb-12">
+            <h2 className="text-3xl font-serif font-medium leading-tight mb-4">
+              Derfor vælger kunder MD Cleaning
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Sitet skal kunne bruges til Google Ads og lokale landingssider. Derfor holder vi
+              budskabet enkelt: tryg privat rengøring, tydelig pris og nem kontakt.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <ServiceCard
-              number="01 / Fast Aftale"
-              title="Standardrengøring"
-              description="Fast ugentlig eller 14-dages frekvens. Vi lærer dit hjem at kende, så hver detalje bliver perfekt hver gang."
-              price="Fast pris pr. besøg"
+              title="Rent hjem uden besvær"
+              description="Vi hjælper med de faste opgaver, der får hjemmet til at føles rent og overskueligt."
             />
             <ServiceCard
-              number="02 / Grundighed"
-              title="Opstartsrengøring"
-              description="Obligatorisk første besøg hvor vi nulstiller hjemmet. Dette sikrer, at vores standard herefter kan holdes."
-              price="+25-50% af standard"
+              title="Mennesker du kan stole på"
+              description="Privat rengøring handler om tillid. Vi lægger vægt på ordentlighed, stabilitet og god dialog."
             />
             <ServiceCard
-              number="03 / Ad hoc"
-              title="Engangsopgaver"
-              description="Hovedrengøring, flytterengøring eller efter håndværkere. Vi leverer et fejlfrit resultat klar til indflytning."
-              price="Pris efter m²"
+              title="Pris der er til at forstå"
+              description="Vores beregner giver et ca.-billede. Endelig pris aftales efter hjemmets behov og opgaver."
             />
-          </div>
-
-          <div className="mt-16 text-center">
-            <Link
-              to="/ydelser"
-              className="inline-flex items-center text-sm font-medium tracking-wide uppercase text-foreground hover:text-accent transition-colors"
-            >
-              Se alle ydelser
-              <svg
-                className="size-4 ml-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                />
-              </svg>
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 px-6 bg-warm ring-1 ring-black/5">
+      <section className="py-20 px-6 bg-warm ring-1 ring-black/5">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-serif font-medium mb-4">Lad os passe på dit hjem</h2>
+          <h2 className="text-3xl font-serif font-medium mb-4">
+            Klar til en ca.-pris på dit hjem?
+          </h2>
           <p className="text-muted-foreground mb-10">
-            Vi vender tilbage inden for to hverdage med en indledende vurdering.
+            Brug beregneren som pejlemærke, eller send os en besked, så vender vi tilbage med et
+            konkret forslag.
           </p>
-          <Link
-            to="/kontakt"
-            className="inline-flex items-center bg-foreground text-background py-3 px-8 rounded-sm text-sm font-medium transition-transform hover:-translate-y-0.5"
+          <a
+            href="#prisberegner"
+            className="inline-flex items-center bg-primary text-primary-foreground py-3 px-8 rounded-sm text-sm font-medium transition-transform hover:-translate-y-0.5"
           >
-            Anmod om et besøg
-          </Link>
+            Gå til prisberegner
+          </a>
         </div>
       </section>
     </>
   );
 }
 
-function ServiceCard({
-  number,
-  title,
-  description,
-  price,
+function PriceCalculator() {
+  const [areaIndex, setAreaIndex] = useState(1);
+  const [bathroomIndex, setBathroomIndex] = useState(1);
+  const [frequencyIndex, setFrequencyIndex] = useState(0);
+  const [startup, setStartup] = useState(false);
+  const [pets, setPets] = useState(false);
+
+  const estimate = useMemo(() => {
+    const base = areaOptions[areaIndex].hours;
+    const bathrooms = bathroomOptions[bathroomIndex].extra;
+    const extras = (startup ? 0.75 : 0) + (pets ? 0.25 : 0);
+    const multiplier = frequencyOptions[frequencyIndex].multiplier;
+    const hours = Math.max(2, (base + bathrooms + extras) * multiplier);
+    const roundedLow = Math.round(hours * 2) / 2;
+    const roundedHigh = roundedLow + 0.5;
+    const low = Math.round(roundedLow * 320);
+    const high = Math.round(roundedHigh * 320);
+
+    return { roundedLow, roundedHigh, low, high };
+  }, [areaIndex, bathroomIndex, frequencyIndex, startup, pets]);
+
+  return (
+    <div id="prisberegner" className="bg-background p-6 md:p-8 rounded-sm ring-1 ring-black/5">
+      <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent mb-4 block">
+        Prisberegner
+      </span>
+      <h2 className="text-3xl font-serif font-medium mb-3">Hvad koster rengøring ca.?</h2>
+      <p className="text-sm text-muted-foreground leading-relaxed mb-8">
+        Beregneren er et pejlemærke til privat rengøring. Endelig pris afhænger af hjemmets
+        stand, opgaver og ønsket niveau.
+      </p>
+
+      <CalculatorGroup label="Hvor stort er hjemmet?">
+        {areaOptions.map((option, index) => (
+          <ChoiceButton
+            key={option.label}
+            active={areaIndex === index}
+            onClick={() => setAreaIndex(index)}
+          >
+            {option.label}
+          </ChoiceButton>
+        ))}
+      </CalculatorGroup>
+
+      <CalculatorGroup label="Hvor mange toiletter/badeværelser?">
+        {bathroomOptions.map((option, index) => (
+          <ChoiceButton
+            key={option.label}
+            active={bathroomIndex === index}
+            onClick={() => setBathroomIndex(index)}
+          >
+            {option.label}
+          </ChoiceButton>
+        ))}
+      </CalculatorGroup>
+
+      <CalculatorGroup label="Hvor ofte ønsker du rengøring?">
+        {frequencyOptions.map((option, index) => (
+          <ChoiceButton
+            key={option.label}
+            active={frequencyIndex === index}
+            onClick={() => setFrequencyIndex(index)}
+          >
+            {option.label}
+          </ChoiceButton>
+        ))}
+      </CalculatorGroup>
+
+      <div className="grid sm:grid-cols-2 gap-3 mb-8">
+        <ToggleOption checked={startup} onChange={setStartup} label="Grundig opstart første gang" />
+        <ToggleOption checked={pets} onChange={setPets} label="Kæledyr i hjemmet" />
+      </div>
+
+      <div className="bg-surface p-5 rounded-sm ring-1 ring-black/5">
+        <div className="text-xs uppercase tracking-[0.16em] text-muted-foreground mb-2">
+          Ca. estimat pr. besøg
+        </div>
+        <div className="text-3xl font-medium text-foreground mb-2">
+          {estimate.low}-{estimate.high} kr. ekskl. moms
+        </div>
+        <p className="text-sm text-muted-foreground mb-5">
+          Ca. {estimate.roundedLow}-{estimate.roundedHigh} timer pr. besøg. Minimum 2 timer.
+        </p>
+        <Link
+          to="/kontakt"
+          className="inline-flex items-center justify-center bg-primary text-primary-foreground py-3 px-5 rounded-sm text-sm font-medium transition-transform hover:-translate-y-0.5"
+        >
+          Få konkret tilbud
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+function CalculatorGroup({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="mb-7">
+      <div className="text-sm font-medium mb-3">{label}</div>
+      <div className="flex flex-wrap gap-2">{children}</div>
+    </div>
+  );
+}
+
+function ChoiceButton({
+  active,
+  children,
+  onClick,
 }: {
-  number: string;
-  title: string;
-  description: string;
-  price: string;
+  active: boolean;
+  children: React.ReactNode;
+  onClick: () => void;
 }) {
   return (
-    <div className="group bg-background p-8 ring-1 ring-black/5 rounded-sm transition-transform hover:-translate-y-1">
-      <span className="text-[10px] font-medium uppercase tracking-widest text-accent/60 mb-8 block">
-        {number}
-      </span>
-      <h3 className="text-xl font-serif font-medium mb-4">{title}</h3>
-      <p className="text-sm text-muted-foreground leading-relaxed mb-8">{description}</p>
-      <div className="pt-6 border-t border-black/5 flex justify-between items-baseline">
-        <span className="text-xs uppercase tracking-tighter opacity-50">Pris</span>
-        <span className="font-medium italic">{price}</span>
-      </div>
+    <button
+      type="button"
+      onClick={onClick}
+      className={`px-3 py-2 rounded-sm text-sm ring-1 transition-colors ${
+        active
+          ? "bg-primary text-primary-foreground ring-primary"
+          : "bg-background text-foreground ring-black/10 hover:bg-surface"
+      }`}
+    >
+      {children}
+    </button>
+  );
+}
+
+function ToggleOption({
+  checked,
+  label,
+  onChange,
+}: {
+  checked: boolean;
+  label: string;
+  onChange: (checked: boolean) => void;
+}) {
+  return (
+    <label className="flex items-center gap-3 text-sm p-3 rounded-sm ring-1 ring-black/5 bg-background cursor-pointer">
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(event) => onChange(event.target.checked)}
+        className="size-4 accent-[var(--primary)]"
+      />
+      {label}
+    </label>
+  );
+}
+
+function TrustPoint({ title, text }: { title: string; text: string }) {
+  return (
+    <div className="border-l-2 border-accent pl-3">
+      <div className="font-medium text-foreground">{title}</div>
+      <div>{text}</div>
+    </div>
+  );
+}
+
+function InfoBox({ title, text }: { title: string; text: string }) {
+  return (
+    <div className="bg-background p-5 rounded-sm ring-1 ring-black/5">
+      <h3 className="font-medium mb-2">{title}</h3>
+      <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
+    </div>
+  );
+}
+
+function ServiceCard({ title, description }: { title: string; description: string }) {
+  return (
+    <div className="bg-surface p-7 ring-1 ring-black/5 rounded-sm">
+      <h3 className="text-xl font-serif font-medium mb-3">{title}</h3>
+      <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
     </div>
   );
 }

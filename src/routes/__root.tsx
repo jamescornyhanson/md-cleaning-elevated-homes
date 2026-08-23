@@ -82,13 +82,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Eksklusiv privatrengøring i Helsingør, Hornbæk, Gilleleje og Fredensborg. Fast pris, høj kvalitet og ro i sindet.",
+          "Privat rengøring i Helsingør og Nordsjælland. Beregn ca. pris og få et uforpligtende tilbud fra MD Cleaning.",
       },
       { property: "og:title", content: "MD Cleaning — Privatrengøring i Nordsjælland" },
       {
         property: "og:description",
         content:
-          "Eksklusiv privatrengøring i Helsingør, Hornbæk, Gilleleje og Fredensborg. Fast pris, høj kvalitet og ro i sindet.",
+          "Privat rengøring i Helsingør og Nordsjælland. Beregn ca. pris og få et uforpligtende tilbud fra MD Cleaning.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -122,11 +122,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function Logo() {
   return (
-    <Link to="/" className="flex items-center gap-2">
-      <div className="w-8 h-8 bg-muted ring-1 ring-black/5 rounded-sm flex items-center justify-center">
-        <span className="text-[10px] font-medium tracking-tighter text-foreground">MD</span>
-      </div>
-      <span className="font-serif italic text-lg tracking-tight text-foreground">MD Cleaning</span>
+    <Link to="/" className="group flex flex-col leading-none text-primary">
+      <span className="text-xl font-semibold tracking-tight">MD Cleaning</span>
+      <span className="mt-1 h-0.5 w-full rounded-full bg-primary transition-transform group-hover:scale-x-95" />
     </Link>
   );
 }
@@ -154,13 +152,19 @@ function Header() {
         <nav className="hidden md:flex items-center gap-8">
           <NavLink to="/">Forside</NavLink>
           <NavLink to="/ydelser">Ydelser</NavLink>
+          <a
+            href="/#prisberegner"
+            className="text-sm font-medium tracking-wide uppercase text-muted-foreground transition-transform hover:text-foreground hover:translate-y-px"
+          >
+            Prisberegner
+          </a>
           <NavLink to="/saadan-fungerer-det">Sådan fungerer det</NavLink>
           <NavLink to="/om-os">Om os</NavLink>
           <Link
             to="/kontakt"
             className="px-4 py-2 ring-1 ring-foreground/10 rounded-full text-sm font-medium tracking-wide uppercase text-foreground hover:bg-foreground hover:text-background transition-all"
           >
-            Tilbud
+            Få tilbud
           </Link>
         </nav>
 
@@ -199,6 +203,13 @@ function Header() {
             >
               Sådan fungerer det
             </Link>
+            <a
+              href="/#prisberegner"
+              onClick={() => setMobileOpen(false)}
+              className="text-sm font-medium tracking-wide uppercase text-muted-foreground hover:text-foreground"
+            >
+              Prisberegner
+            </a>
             <Link
               to="/om-os"
               onClick={() => setMobileOpen(false)}
@@ -225,10 +236,7 @@ function Footer() {
     <footer className="py-12 px-6 border-t border-black/5 bg-background">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex items-center gap-2 opacity-60">
-          <div className="w-6 h-6 bg-muted ring-1 ring-black/5 rounded-sm flex items-center justify-center">
-            <span className="text-[8px] font-medium tracking-tighter text-foreground">MD</span>
-          </div>
-          <span className="font-serif italic text-sm text-foreground">MD Cleaning</span>
+          <span className="text-sm font-semibold text-primary">MD Cleaning</span>
         </div>
 
         <div className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground text-center">

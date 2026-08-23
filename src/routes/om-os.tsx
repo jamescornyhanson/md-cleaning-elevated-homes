@@ -8,13 +8,13 @@ export const Route = createFileRoute("/om-os")({
       {
         name: "description",
         content:
-          "Læs om MD Cleaning: et privat rengøringsfirma i Nordsjælland, der behandler medarbejdere godt for at sikre stabilitet og kvalitet i kundens hjem.",
+          "Læs om MD Cleaning: privat rengøring i Nordsjælland med stor erfaring fra mange års arbejde i private hjem.",
       },
       { property: "og:title", content: "Om os — MD Cleaning" },
       {
         property: "og:description",
         content:
-          "Læs om MD Cleaning: et privat rengøringsfirma i Nordsjælland, der behandler medarbejdere godt for at sikre stabilitet og kvalitet i kundens hjem.",
+          "Læs om MD Cleaning: privat rengøring i Nordsjælland med stor erfaring fra mange års arbejde i private hjem.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -32,10 +32,10 @@ function OmOs() {
       <section className="py-20 lg:py-28 px-6 bg-background">
         <div className="max-w-7xl mx-auto">
           <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent mb-6 block">
-            Bag kulissen
+            Om MD Cleaning
           </span>
           <h1 className="text-4xl md:text-5xl font-serif font-medium leading-tight text-balance mb-8 max-w-3xl">
-            Ordentlighed starter med ordentlige vilkår
+            Stor erfaring med privat rengøring
           </h1>
         </div>
       </section>
@@ -56,25 +56,27 @@ function OmOs() {
 
           <div className="order-1 md:order-2 max-w-lg">
             <h2 className="text-3xl font-serif font-medium mb-8">
-              Glade medarbejdere giver bedre resultater
+              Vi passer godt på dit hjem
             </h2>
             <div className="space-y-6 text-muted-foreground leading-relaxed">
               <p>
-                MD Cleaning er et privat rengøringsfirma med base i Nordsjælland. Vi betjener
-                kunder inden for 40 minutters kørsel fra Helsingør — herunder Hornbæk,
-                Snekkersten, Espergærde, Gilleleje og Fredensborg.
+                MD Cleaning har stor erfaring inden for privat rengøring gennem mange års
+                praktisk erfaring i private hjem. Vi ved, at god rengøring handler om mere end
+                rene flader. Det handler også om tryghed, stabilitet og respekt for hjemmet.
               </p>
               <p>
-                Vi ved, at tilliden til at lukke fremmede ind i sit hjem er stor. Derfor
-                behandler vi vores medarbejdere med dyb respekt og ordentlige vilkår.
+                Vi har base i Nordsjælland og arbejder med kunder inden for en praktisk afstand
+                fra Helsingør - blandt andet Hornbæk, Snekkersten, Espergærde, Gilleleje og
+                Fredensborg.
               </p>
               <p>
-                Resultatet er stabile, ordentlige og dedikerede mennesker, der sætter en ære i
-                at passe på dit hjem, som var det deres eget.
+                Når du vælger privat rengøring, lukker du mennesker ind i dit hjem. Den tillid
+                tager vi alvorligt. Derfor lægger vi vægt på tydelige aftaler, ordentlig
+                kommunikation og mennesker, der møder hjemmet med respekt.
               </p>
               <p>
-                Vi sælger ikke discounttimer. Vi sælger ro i sindet — og den ro bygger på
-                pålidelighed, diskretion og et team, der trives.
+                Vi behandler medarbejdere ordentligt, fordi stabile og trygge medarbejdere giver
+                bedre rengøring og en bedre oplevelse for kunden.
               </p>
             </div>
 
@@ -101,7 +103,7 @@ function OmOs() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <ValueCard
               title="Tillid"
-              description="Du lukker os ind i dit hjem. Det tager vi alvorligt — hver gang."
+              description="Du lukker os ind i dit hjem. Det tager vi alvorligt - hver gang."
             />
             <ValueCard
               title="Stabilitet"
@@ -109,7 +111,7 @@ function OmOs() {
             />
             <ValueCard
               title="Kvalitet"
-              description="Vi siger fra, hvis vi ikke kan levere vores niveau. Ingen undskyldninger."
+              description="Vi arbejder grundigt, tydeligt og med respekt for hjemmets faste rutiner."
             />
           </div>
         </div>
@@ -118,7 +120,7 @@ function OmOs() {
       {/* CTA */}
       <section className="py-24 px-6 bg-warm ring-1 ring-black/5">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-serif font-medium mb-4">Mød teamet bag rengøringen</h2>
+          <h2 className="text-3xl font-serif font-medium mb-4">Vil du høre, hvordan vi kan hjælpe?</h2>
           <p className="text-muted-foreground mb-10">
             Har du spørgsmål til, hvordan vi arbejder? Vi er klar til en uforpligtende samtale.
           </p>

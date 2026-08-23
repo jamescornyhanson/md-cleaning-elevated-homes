@@ -45,7 +45,7 @@ function Ydelser() {
       <section className="py-8 px-6 bg-foreground text-background">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
           <p className="text-sm font-medium uppercase tracking-wide">
-            Prisniveau: ca. 320 kr. ekskl. moms pr. time - minimum 2 timer
+            Pris gives som individuel huspris - minimum 2 timers rengøring pr. besøg
           </p>
           <Link
             to="/kontakt"

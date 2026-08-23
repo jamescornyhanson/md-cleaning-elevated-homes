@@ -46,6 +46,8 @@ const frequencyOptions = [
   { label: "Engangsbesøg", multiplier: 1.2 },
 ];
 
+const internalHourlyRate = 320;
+
 function Forside() {
   return (
     <>
@@ -78,8 +80,8 @@ function Forside() {
             </div>
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-muted-foreground">
               <TrustPoint title="Fra 2 timer" text="Minimum pr. besøg" />
-              <TrustPoint title="Ca. 320 kr." text="Ekskl. moms pr. time" />
-              <TrustPoint title="Fast aftale" text="Ugentligt eller hver 14. dag" />
+              <TrustPoint title="Individuel pris" text="Baseret på dit hjem" />
+              <TrustPoint title="Fast aftale" text="Uge eller hver 14. dag" />
             </div>
           </div>
 
@@ -112,7 +114,7 @@ function Forside() {
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <InfoBox title="Privat rengøring" text="Køkken, bad, støv, gulve og faste opgaver." />
-              <InfoBox title="Tydelig pris" text="Vi regner i timer, men gør det let at forstå." />
+              <InfoBox title="Tydelig huspris" text="Du får et samlet billede af prisen pr. besøg." />
               <InfoBox title="Tryg kontakt" text="Du får en konkret vurdering før opstart." />
               <InfoBox title="Lokal rute" text="Helsingør og opland med fokus på god ruteøkonomi." />
             </div>
@@ -187,8 +189,8 @@ function PriceCalculator() {
     const hours = Math.max(2, (base + bathrooms + extras) * multiplier);
     const roundedLow = Math.round(hours * 2) / 2;
     const roundedHigh = roundedLow + 0.5;
-    const low = Math.round(roundedLow * 320);
-    const high = Math.round(roundedHigh * 320);
+    const low = Math.round(roundedLow * internalHourlyRate);
+    const high = Math.round(roundedHigh * internalHourlyRate);
 
     return { roundedLow, roundedHigh, low, high };
   }, [areaIndex, bathroomIndex, frequencyIndex, startup, pets]);
@@ -200,8 +202,8 @@ function PriceCalculator() {
       </span>
       <h2 className="text-3xl font-serif font-medium mb-3">Hvad koster rengøring ca.?</h2>
       <p className="text-sm text-muted-foreground leading-relaxed mb-8">
-        Beregneren er et pejlemærke til privat rengøring. Endelig pris afhænger af hjemmets
-        stand, opgaver og ønsket niveau.
+        Beregneren er et pejlemærke til privat rengøring. Vi giver altid en individuel pris ud
+        fra hjemmets størrelse, badeværelser, stand, opgaver og frekvens.
       </p>
 
       <CalculatorGroup label="Hvor stort er hjemmet?">
@@ -253,7 +255,8 @@ function PriceCalculator() {
           {estimate.low}-{estimate.high} kr. ekskl. moms
         </div>
         <p className="text-sm text-muted-foreground mb-5">
-          Ca. {estimate.roundedLow}-{estimate.roundedHigh} timer pr. besøg. Minimum 2 timer.
+          Ca. {estimate.roundedLow}-{estimate.roundedHigh} timers rengøring pr. besøg. Den
+          endelige pris gives som huspris efter konkret vurdering.
         </p>
         <Link
           to="/kontakt"

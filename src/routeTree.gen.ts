@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as LandingssiderRouteImport } from './routes/landingssider'
 import { Route as OmOsRouteImport } from './routes/om-os'
 import { Route as PrivatRengoeringHelsingoerRouteImport } from './routes/privat-rengoering-helsingoer'
 import { Route as PrivatRengoeringHornbaekRouteImport } from './routes/privat-rengoering-hornbaek'
@@ -27,6 +28,11 @@ const IndexRoute = IndexRouteImport.update({
 const KontaktRoute = KontaktRouteImport.update({
   id: '/kontakt',
   path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingssiderRoute = LandingssiderRouteImport.update({
+  id: '/landingssider',
+  path: '/landingssider',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OmOsRoute = OmOsRouteImport.update({
@@ -72,6 +78,7 @@ const YdelserRoute = YdelserRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/kontakt': typeof KontaktRoute
+  '/landingssider': typeof LandingssiderRoute
   '/om-os': typeof OmOsRoute
   '/privat-rengoering-helsingoer': typeof PrivatRengoeringHelsingoerRoute
   '/privat-rengoering-hornbaek': typeof PrivatRengoeringHornbaekRoute
@@ -83,6 +90,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/kontakt': typeof KontaktRoute
+  '/landingssider': typeof LandingssiderRoute
   '/om-os': typeof OmOsRoute
   '/privat-rengoering-helsingoer': typeof PrivatRengoeringHelsingoerRoute
   '/privat-rengoering-hornbaek': typeof PrivatRengoeringHornbaekRoute
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/kontakt': typeof KontaktRoute
+  '/landingssider': typeof LandingssiderRoute
   '/om-os': typeof OmOsRoute
   '/privat-rengoering-helsingoer': typeof PrivatRengoeringHelsingoerRoute
   '/privat-rengoering-hornbaek': typeof PrivatRengoeringHornbaekRoute
@@ -108,6 +117,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/kontakt'
+    | '/landingssider'
     | '/om-os'
     | '/privat-rengoering-helsingoer'
     | '/privat-rengoering-hornbaek'
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/kontakt'
+    | '/landingssider'
     | '/om-os'
     | '/privat-rengoering-helsingoer'
     | '/privat-rengoering-hornbaek'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/kontakt'
+    | '/landingssider'
     | '/om-os'
     | '/privat-rengoering-helsingoer'
     | '/privat-rengoering-hornbaek'
@@ -142,6 +154,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   KontaktRoute: typeof KontaktRoute
+  LandingssiderRoute: typeof LandingssiderRoute
   OmOsRoute: typeof OmOsRoute
   PrivatRengoeringHelsingoerRoute: typeof PrivatRengoeringHelsingoerRoute
   PrivatRengoeringHornbaekRoute: typeof PrivatRengoeringHornbaekRoute
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       path: '/kontakt'
       fullPath: '/kontakt'
       preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landingssider': {
+      id: '/landingssider'
+      path: '/landingssider'
+      fullPath: '/landingssider'
+      preLoaderRoute: typeof LandingssiderRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/om-os': {
@@ -222,6 +242,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   KontaktRoute: KontaktRoute,
+  LandingssiderRoute: LandingssiderRoute,
   OmOsRoute: OmOsRoute,
   PrivatRengoeringHelsingoerRoute: PrivatRengoeringHelsingoerRoute,
   PrivatRengoeringHornbaekRoute: PrivatRengoeringHornbaekRoute,

@@ -8,7 +8,7 @@ export const Route = createFileRoute("/rengoeringshjaelp-helsingoer")({
       {
         name: "description",
         content:
-          "Rengøringshjælp i Helsingør til private hjem. Beregn ca.-pris og få et uforpligtende tilbud.",
+          "Rengøringshjælp i Helsingør til private hjem. Få vurderet dit behov og få et uforpligtende tilbud.",
       },
     ],
   }),

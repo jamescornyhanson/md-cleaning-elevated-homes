@@ -88,12 +88,12 @@ export function LandingPage({
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.75fr_1fr] gap-14 items-start">
           <div>
             <h2 className="text-3xl font-serif font-medium mb-5">
-              Tryg fast rengøring - uden at du skal vælge på timepris
+              Tryg fast rengøring - med tydelig forventningsafstemning
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-7">{proofText}</p>
             <div className="grid sm:grid-cols-2 gap-4">
               <InfoBox title="Uge eller 14 dage" text="Det er udgangspunktet for faste aftaler." />
-              <InfoBox title="Individuel huspris" text="Baseret på m², bad, stand og opgaver." />
+              <InfoBox title="Konkret vurdering" text="Baseret på m², bad, stand og opgaver." />
               <InfoBox title="Tydelig opstart" text="Vi afstemmer forventningerne før første besøg." />
               <InfoBox title="Lokalt fokus" text={`Relevant for ${localAreas.join(", ")}.`} />
             </div>
@@ -124,7 +124,7 @@ export function LandingPage({
 
       <section className="py-20 px-6 bg-warm ring-1 ring-black/5">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-serif font-medium mb-4">Vil du have en konkret pris?</h2>
+          <h2 className="text-3xl font-serif font-medium mb-4">Vil du have et konkret forslag?</h2>
           <p className="text-muted-foreground mb-10">
             Send en forespørgsel, så vender vi tilbage med næste skridt.
           </p>
@@ -170,7 +170,7 @@ function NeedAssessment() {
       <h2 className="text-3xl font-serif font-medium mb-3">Find den rigtige aftale</h2>
       <p className="text-sm text-muted-foreground leading-relaxed mb-8">
         Svarene hjælper os med at vurdere opgaven, så vi kan vende tilbage med en individuel
-        huspris og en aftale, der passer til hjemmet.
+        vurdering og en aftale, der passer til hjemmet.
       </p>
 
       <ButtonGroup label="Boligstørrelse">

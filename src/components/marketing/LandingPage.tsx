@@ -68,7 +68,7 @@ export function LandingPage({
                 to="/kontakt"
                 className="inline-flex items-center justify-center ring-1 ring-primary/20 text-foreground py-3 px-6 rounded-sm text-sm font-medium hover:bg-surface transition-colors"
               >
-                Få et uforpligtende tilbud
+                Anmod om personligt møde
               </Link>
             </div>
           </div>
@@ -93,8 +93,8 @@ export function LandingPage({
             <p className="text-muted-foreground leading-relaxed mb-7">{proofText}</p>
             <div className="grid sm:grid-cols-2 gap-4">
               <InfoBox title="Uge eller 14 dage" text="Det er udgangspunktet for faste aftaler." />
-              <InfoBox title="Konkret vurdering" text="Baseret på m², bad, stand og opgaver." />
-              <InfoBox title="Tydelig opstart" text="Vi afstemmer forventningerne før første besøg." />
+              <InfoBox title="Personligt møde" text="Vi vil gerne kende hjemmet, før vi giver tilbud." />
+              <InfoBox title="Tydelig opstart" text="Vi afstemmer forventningerne, før rengøringen begynder." />
               <InfoBox title="Lokalt fokus" text={`Relevant for ${localAreas.join(", ")}.`} />
             </div>
           </div>
@@ -110,14 +110,14 @@ export function LandingPage({
               Sådan kommer du videre
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Brug vurderingen som første skridt. Derefter kontakter vi dig med en konkret
-              vurdering af hjemmet og et forslag til fast aftale.
+              Brug vurderingen som første skridt. Derefter tager vi personlig kontakt og aftaler,
+              hvordan vi bedst vurderer hjemmet, før vi sender et tilbud.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             <Step number="01" title="Fortæl om hjemmet" text="Vælg størrelse, badeværelser og frekvens." />
             <Step number="02" title="Send forespørgsel" text="Fortæl kort om hjemmet og dine ønsker." />
-            <Step number="03" title="Få konkret forslag" text="Vi vurderer opgaven og vender tilbage med næste skridt." />
+            <Step number="03" title="Personligt møde" text="Vi lærer hjemmet at kende, før vi sender et tilbud." />
           </div>
         </div>
       </section>
@@ -126,13 +126,13 @@ export function LandingPage({
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-serif font-medium mb-4">Vil du have et konkret forslag?</h2>
           <p className="text-muted-foreground mb-10">
-            Send en forespørgsel, så vender vi tilbage med næste skridt.
+            Send en forespørgsel, så tager vi personlig kontakt og aftaler næste skridt.
           </p>
           <Link
             to="/kontakt"
             className="inline-flex items-center bg-primary text-primary-foreground py-3 px-8 rounded-sm text-sm font-medium transition-transform hover:-translate-y-0.5"
           >
-            Få et tilbud
+            Anmod om møde
           </Link>
         </div>
       </section>
@@ -169,8 +169,8 @@ function NeedAssessment() {
       </span>
       <h2 className="text-3xl font-serif font-medium mb-3">Find den rigtige aftale</h2>
       <p className="text-sm text-muted-foreground leading-relaxed mb-8">
-        Svarene hjælper os med at vurdere opgaven, så vi kan vende tilbage med en individuel
-        vurdering og en aftale, der passer til hjemmet.
+        Svarene hjælper os med at forstå opgaven. Derefter tager vi personlig kontakt, så vi
+        kan lære hjemmet at kende, før vi sender et tilbud.
       </p>
 
       <ButtonGroup label="Boligstørrelse">
@@ -236,7 +236,8 @@ function NeedAssessment() {
             Vi har modtaget din forespørgsel
           </div>
           <p className="text-sm text-muted-foreground">
-            Vi vender tilbage med næste skridt og en konkret vurdering af hjemmet.
+            Vi tager personlig kontakt og aftaler, hvordan vi bedst vurderer hjemmet, før vi
+            sender et tilbud.
           </p>
         </div>
       ) : (
@@ -250,8 +251,8 @@ function NeedAssessment() {
           <p className="text-sm text-muted-foreground mb-5">
             Et hjem på {areaOptions[areaIndex].toLowerCase()} med {bathroomOptions[
               bathroomIndex
-            ].toLowerCase()} vurderes bedst med en konkret gennemgang, hvor vi også tager højde
-            for stand, adgang og særlige ønsker.
+            ].toLowerCase()} vurderes bedst efter personlig kontakt, hvor vi også tager højde
+            for stand, adgang, ønsker og hvordan hjemmet bruges i hverdagen.
           </p>
 
           <div className="grid gap-3 mb-5">
@@ -288,7 +289,7 @@ function NeedAssessment() {
             type="submit"
             className="w-full inline-flex items-center justify-center bg-primary text-primary-foreground py-3 px-5 rounded-sm text-sm font-medium transition-transform hover:-translate-y-0.5"
           >
-            Få min vurdering
+            Anmod om personlig kontakt
           </button>
           <p className="text-xs text-muted-foreground leading-relaxed mt-4">
             Vi bruger kun oplysningerne til at kontakte dig om rengøring af dit hjem.

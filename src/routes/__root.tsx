@@ -82,13 +82,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Privat rengøring i Helsingør og Nordsjælland. Få en personlig vurdering og et uforpligtende tilbud fra MD Cleaning.",
+          "Privat rengøring i Helsingør og Nordsjælland. Vi tager personlig kontakt, før vi sender et tilbud.",
       },
       { property: "og:title", content: "MD Cleaning — Privatrengøring i Nordsjælland" },
       {
         property: "og:description",
         content:
-          "Privat rengøring i Helsingør og Nordsjælland. Få en personlig vurdering og et uforpligtende tilbud fra MD Cleaning.",
+          "Privat rengøring i Helsingør og Nordsjælland. Vi tager personlig kontakt, før vi sender et tilbud.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -158,7 +158,7 @@ function Header() {
             to="/kontakt"
             className="px-4 py-2 ring-1 ring-foreground/10 rounded-full text-sm font-medium tracking-wide uppercase text-foreground hover:bg-foreground hover:text-background transition-all"
           >
-            Få tilbud
+            Kontakt
           </Link>
         </nav>
 
@@ -209,7 +209,7 @@ function Header() {
               onClick={() => setMobileOpen(false)}
               className="text-sm font-medium tracking-wide uppercase text-foreground"
             >
-              Anmod om tilbud
+              Anmod om kontakt
             </Link>
           </nav>
         </div>

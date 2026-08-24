@@ -4,17 +4,17 @@ import { useState } from "react";
 export const Route = createFileRoute("/kontakt")({
   head: () => ({
     meta: [
-      { title: "Kontakt & tilbud — MD Cleaning" },
+      { title: "Kontakt & personligt møde — MD Cleaning" },
       {
         name: "description",
         content:
-          "Anmod om et uforpligtende tilbud fra MD Cleaning. Udfyld formularen med adresse, boligtype og ønsket frekvens — vi vender tilbage inden for 24-48 timer.",
+          "Anmod om personlig kontakt fra MD Cleaning. Vi vil gerne kende hjemmet, før vi sender et tilbud.",
       },
-      { property: "og:title", content: "Kontakt & tilbud — MD Cleaning" },
+      { property: "og:title", content: "Kontakt & personligt møde — MD Cleaning" },
       {
         property: "og:description",
         content:
-          "Anmod om et uforpligtende tilbud fra MD Cleaning. Udfyld formularen med adresse, boligtype og ønsket frekvens — vi vender tilbage inden for 24-48 timer.",
+          "Anmod om personlig kontakt fra MD Cleaning. Vi vil gerne kende hjemmet, før vi sender et tilbud.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -57,11 +57,11 @@ function Kontakt() {
             Kontakt
           </span>
           <h1 className="text-4xl md:text-5xl font-serif font-medium leading-tight text-balance mb-8 max-w-3xl">
-            Anmod om et besøg
+            Anmod om personlig kontakt
           </h1>
           <p className="text-lg leading-relaxed text-pretty max-w-[56ch] text-muted-foreground">
-            Fortæl os om dit hjem og dine ønsker. Vi vender tilbage inden for 24-48 timer med en
-            indledende vurdering.
+            Fortæl os kort om dit hjem og dine ønsker. Vi vender tilbage inden for 24-48 timer
+            og aftaler personlig kontakt, før vi sender et tilbud.
           </p>
         </div>
       </section>
@@ -84,7 +84,8 @@ function Kontakt() {
               </div>
               <h2 className="text-3xl font-serif font-medium mb-4">Tak for din forespørgsel</h2>
               <p className="text-muted-foreground max-w-md mx-auto">
-                Vi har modtaget dine oplysninger og vender tilbage inden for 24-48 timer.
+                Vi har modtaget dine oplysninger og vender tilbage inden for 24-48 timer for at
+                aftale næste personlige skridt.
               </p>
             </div>
           ) : (

@@ -8,7 +8,7 @@ export const Route = createFileRoute("/privat-rengoering-hornbaek")({
       {
         name: "description",
         content:
-          "Privat rengøring i Hornbæk og omegn. Faste aftaler, tryg kontakt og individuel pris pr. hjem.",
+          "Privat rengøring i Hornbæk og omegn. Faste aftaler, tryg kontakt og personligt møde før tilbud.",
       },
     ],
   }),
@@ -20,8 +20,8 @@ function Page() {
     <LandingPage
       areaLabel="Privat rengøring i Hornbæk"
       headline="Rengøring til hjem i Hornbæk med ro og omtanke"
-      intro="MD Cleaning hjælper private hjem i Hornbæk og omegn med faste rengøringsaftaler, hvor opgaver, forventninger og pris aftales tydeligt."
-      proofText="Hornbæk og kystområdet passer godt til vores fokus på private hjem, hvor kunden ønsker stabilitet, tryghed og en pæn løsning frem for laveste pris."
+      intro="MD Cleaning hjælper private hjem i Hornbæk og omegn med faste rengøringsaftaler, hvor opgaver og forventninger afstemmes personligt."
+      proofText="Hornbæk og kystområdet passer godt til vores fokus på private hjem, hvor kunden ønsker stabilitet, tryghed og personlig kontakt frem for laveste pris."
       localAreas={["Hornbæk", "Dronningmølle", "Hellebæk", "Ålsgårde"]}
     />
   );

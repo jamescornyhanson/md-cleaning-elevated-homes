@@ -8,13 +8,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Privat rengøring i Helsingør og Nordsjælland. Få en personlig vurdering og et uforpligtende tilbud fra MD Cleaning.",
+          "Privat rengøring i Helsingør og Nordsjælland. Vi tager personlig kontakt og ser hjemmet, før vi sender et tilbud.",
       },
       { property: "og:title", content: "MD Cleaning - Privat rengøring i Helsingør" },
       {
         property: "og:description",
         content:
-          "Tryg privat rengøring til dit hjem. Få en personlig vurdering og et uforpligtende tilbud fra MD Cleaning.",
+          "Tryg privat rengøring til dit hjem. Vi lægger vægt på personlig kontakt, før vi sender et tilbud.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -46,7 +46,7 @@ function Forside() {
                 to="/kontakt"
                 className="inline-flex items-center justify-center bg-primary text-primary-foreground py-3 px-6 rounded-sm text-sm font-medium transition-transform hover:-translate-y-0.5"
               >
-                Få en personlig vurdering
+                Anmod om personligt møde
               </Link>
               <Link
                 to="/ydelser"
@@ -57,7 +57,7 @@ function Forside() {
             </div>
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-muted-foreground">
               <TrustPoint title="Kvalitet først" text="Vi tager kun opgaver, vi kan stå inde for" />
-              <TrustPoint title="Personlig vurdering" text="Tilpasset dit hjem og dine ønsker" />
+              <TrustPoint title="Personlig kontakt" text="Vi vil kende hjemmet, før vi giver tilbud" />
               <TrustPoint title="Fast aftale" text="Uge eller hver 14. dag" />
             </div>
           </div>
@@ -86,13 +86,13 @@ function Forside() {
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-7">
               Vi starter med en praktisk vurdering af hjemmets størrelse, antal badeværelser og
-              ønsket frekvens. Derefter får du et forslag, der passer til hverdagen og kan
-              leveres stabilt.
+              ønsket frekvens. Derefter tager vi personlig kontakt, så vi forstår hjemmet,
+              hverdagen og forventningerne, før vi sender et tilbud.
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <InfoBox title="Privat rengøring" text="Køkken, bad, støv, gulve og faste opgaver." />
-              <InfoBox title="Tydelig huspris" text="Du får et samlet billede af prisen pr. besøg." />
-              <InfoBox title="Tryg kontakt" text="Du får en konkret vurdering før opstart." />
+              <InfoBox title="Personligt møde" text="Vi vil gerne se og forstå hjemmet først." />
+              <InfoBox title="Tryg kontakt" text="Du får en konkret dialog før tilbud." />
               <InfoBox title="Lokal rute" text="Helsingør og opland med fokus på god ruteøkonomi." />
             </div>
           </div>
@@ -105,14 +105,15 @@ function Forside() {
               Sådan finder vi den rigtige løsning
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed mb-8">
-              Hvert hjem er forskelligt. Derfor lægger vi vægt på en grundig vurdering, før vi
-              aftaler omfang og pris. Du får et skræddersyet forslag — ikke en standardpakke.
+              Hvert hjem er forskelligt. Derfor lægger vi vægt på personlig kontakt og et møde,
+              før vi aftaler omfang og sender tilbud. Du får et forslag, der bygger på dit hjem,
+              ikke en standardpakke.
             </p>
 
             <ol className="space-y-5 mb-8">
               <Step number="1" text="Du beskriver dit hjem og dine ønsker." />
-              <Step number="2" text="Vi vurderer omfang, frekvens og særlige hensyn." />
-              <Step number="3" text="Du modtager et uforpligtende tilbud med fast pris pr. besøg." />
+              <Step number="2" text="Vi tager personlig kontakt og aftaler et møde eller en gennemgang." />
+              <Step number="3" text="Først derefter sender vi et uforpligtende tilbud." />
             </ol>
 
             <Link
@@ -148,7 +149,7 @@ function Forside() {
             />
             <ServiceCard
               title="Aftale du kan forstå"
-              description="Du får et klart overblik over opgaver, frekvens og pris — uden småttryk eller overraskelser."
+              description="Du får en klar aftale om opgaver og frekvens efter personlig kontakt og forventningsafstemning."
             />
           </div>
         </div>
@@ -160,7 +161,7 @@ function Forside() {
             Klar til en vurdering af dit hjem?
           </h2>
           <p className="text-muted-foreground mb-10">
-            Fortæl os om dit hjem, så vender vi tilbage med et konkret forslag og fast pris.
+            Fortæl os om dit hjem, så tager vi personlig kontakt og aftaler næste skridt.
           </p>
           <Link
             to="/kontakt"

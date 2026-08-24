@@ -8,7 +8,7 @@ export const Route = createFileRoute("/rengoeringshjaelp-helsingoer")({
       {
         name: "description",
         content:
-          "Rengøringshjælp i Helsingør til private hjem. Få vurderet dit behov og få et uforpligtende tilbud.",
+          "Rengøringshjælp i Helsingør til private hjem. Få personlig kontakt og en tryg vurdering før tilbud.",
       },
     ],
   }),
@@ -21,7 +21,7 @@ function Page() {
       areaLabel="Rengøringshjælp i Helsingør"
       headline="Få hjælp til rengøringen - uden at gå på kompromis med trygheden"
       intro="Hvis hjemmet skal være rent uden at hverdagen bliver tungere, hjælper MD Cleaning med faste og tydelige rengøringsaftaler i Helsingør."
-      proofText="Rengøringshjælp i private hjem kræver tillid. Derfor fokuserer vi på forventningsafstemning, stabilitet og en pris, der passer til det konkrete hus."
+      proofText="Rengøringshjælp i private hjem kræver tillid. Derfor fokuserer vi på forventningsafstemning, stabilitet og et personligt møde, før vi sender et tilbud."
       localAreas={["Helsingør", "Snekkersten", "Espergærde", "Hellebæk"]}
     />
   );

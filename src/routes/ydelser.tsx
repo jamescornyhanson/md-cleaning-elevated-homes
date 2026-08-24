@@ -36,7 +36,7 @@ function Ydelser() {
           </h1>
           <p className="text-lg leading-relaxed text-pretty max-w-[56ch] text-muted-foreground">
             Vi hjælper med faste rengøringsaftaler, opstartsrengøring og engangsopgaver. Du får
-            en tydelig vurdering, så du ved, hvad rengøringen cirka kræver.
+            en tydelig vurdering efter personlig kontakt, så aftalen passer til hjemmet.
           </p>
         </div>
       </section>
@@ -49,7 +49,7 @@ function Ydelser() {
             title="Standardrengøring"
             description="Vores kerneydelse. En fast aftale med ugentlig eller 14-dages frekvens, hvor vi lærer dit hjem og dine faste ønsker at kende."
             details={[
-              "Pris fastsættes efter individuel vurdering af hjemmet",
+              "Tilbud gives efter personlig kontakt og vurdering af hjemmet",
               "Tydelig aftale om faste opgaver",
               "Tilpasset dit hjem og dine ønsker",
             ]}
@@ -105,13 +105,13 @@ function Ydelser() {
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-serif font-medium mb-4">Vil du vide, hvad vi kan gøre for dig?</h2>
           <p className="text-muted-foreground mb-10">
-            Fortæl os om dit hjem, så vender vi tilbage med en skræddersyet plan og fast pris.
+            Fortæl os om dit hjem, så tager vi personlig kontakt og aftaler næste skridt, før vi sender tilbud.
           </p>
           <Link
             to="/kontakt"
             className="inline-flex items-center bg-foreground text-background py-3 px-8 rounded-sm text-sm font-medium transition-transform hover:-translate-y-0.5"
           >
-            Anmod om et tilbud
+            Anmod om kontakt
           </Link>
         </div>
       </section>

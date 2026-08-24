@@ -8,13 +8,13 @@ export const Route = createFileRoute("/saadan-fungerer-det")({
       {
         name: "description",
         content:
-          "Læs hvordan MD Cleaning arbejder: forespørgsel, screening, besøg, fast pris og løbende evaluering i Nordsjælland.",
+          "Læs hvordan MD Cleaning arbejder: forespørgsel, personlig kontakt, besøg, tilbud og løbende evaluering i Nordsjælland.",
       },
       { property: "og:title", content: "Sådan fungerer det — MD Cleaning" },
       {
         property: "og:description",
         content:
-          "Læs hvordan MD Cleaning arbejder: forespørgsel, screening, besøg, fast pris og løbende evaluering i Nordsjælland.",
+          "Læs hvordan MD Cleaning arbejder: forespørgsel, personlig kontakt, besøg, tilbud og løbende evaluering i Nordsjælland.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -38,8 +38,8 @@ function SaadanFungererDet() {
             Sådan sikrer vi kvaliteten
           </h1>
           <p className="text-lg leading-relaxed text-pretty max-w-[56ch] text-muted-foreground">
-            Vi screener alle nye opgaver nøje. Hvis vi ikke mener, at vi kan levere det niveau,
-            vi er kendt for, siger vi hellere nej tak. Det er din garanti for ordentlighed.
+            Vi screener alle nye opgaver nøje og lægger vægt på personlig kontakt. Vi vil gerne
+            vide, hvilket hjem vi skal gøre rent, før vi sender et tilbud.
           </p>
         </div>
       </section>
@@ -51,22 +51,22 @@ function SaadanFungererDet() {
             <ProcessStep
               number="01"
               title="Forespørgsel"
-              description="Du kontakter os via formularen eller telefon. Vi svarer altid inden for 24-48 timer med en indledende dialog om dine behov."
+              description="Du kontakter os via formularen eller telefon. Vi svarer inden for 24-48 timer og tager en indledende dialog om hjemmet og dine behov."
             />
             <ProcessStep
               number="02"
-              title="Screening af opgave og boligtype"
-              description="Vi vurderer, om opgaven passer til vores kapacitet og kvalitetsniveau. Vi siger fra, hvis vi ikke kan levere det, vi står for."
+              title="Personlig kontakt"
+              description="Den personlige kontakt er vigtig for os. Vi vil forstå hjemmet, forventningerne og opgavens karakter, før vi går videre."
             />
             <ProcessStep
               number="03"
-              title="Besøg og vurdering"
-              description="Vi mødes i dit hjem for at gennemgå dine ønsker, vurdere boligens stand og aftale eventuelle særlige hensyn."
+              title="Møde og vurdering"
+              description="Vi mødes gerne i hjemmet for at gennemgå ønsker, vurdere boligens stand og aftale eventuelle særlige hensyn."
             />
             <ProcessStep
               number="04"
-              title="Fast pris"
-              description="Efter besøget giver vi en fast pris pr. besøg eller opgave. Der er ingen skjulte gebyrer eller uforudsete tillæg."
+              title="Tilbud"
+              description="Først efter den personlige kontakt sender vi et tilbud. Det gør aftalen mere præcis og mere tryg for begge parter."
             />
             <ProcessStep
               number="05"
@@ -103,7 +103,7 @@ function SaadanFungererDet() {
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-serif font-medium mb-4">Klar til at starte processen?</h2>
           <p className="text-muted-foreground mb-10">
-            Send en forespørgsel — vi vender tilbage inden for to hverdage.
+            Send en forespørgsel, så tager vi personlig kontakt og aftaler næste skridt.
           </p>
           <Link
             to="/kontakt"

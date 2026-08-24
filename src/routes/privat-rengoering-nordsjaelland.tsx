@@ -8,7 +8,7 @@ export const Route = createFileRoute("/privat-rengoering-nordsjaelland")({
       {
         name: "description",
         content:
-          "Privat rengøring i Nordsjælland med fokus på tryghed, faste aftaler og individuel huspris.",
+          "Privat rengøring i Nordsjælland med fokus på tryghed, faste aftaler og personlig kontakt før tilbud.",
       },
     ],
   }),
@@ -20,7 +20,7 @@ function Page() {
     <LandingPage
       areaLabel="Privat rengøring i Nordsjælland"
       headline="Fast privat rengøring med ro, kvalitet og tydelige aftaler"
-      intro="MD Cleaning hjælper private hjem i Nordsjælland med rengøring hver uge eller hver 14. dag. Vi giver en konkret huspris ud fra hjemmets behov."
+      intro="MD Cleaning hjælper private hjem i Nordsjælland med rengøring hver uge eller hver 14. dag. Vi tager personlig kontakt, før vi sender et tilbud."
       proofText="Vi er ikke bygget til priskrig. Vi er bygget til kunder, der ønsker ordentlig kommunikation, stabil rengøring og mennesker, man kan føle sig tryg ved at lukke ind."
       localAreas={["Helsingør", "Hornbæk", "Fredensborg", "Gilleleje"]}
     />

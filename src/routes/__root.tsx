@@ -9,7 +9,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
-import { Menu, X } from "lucide-react";
+import { Globe2, Menu, X } from "lucide-react";
 
 import appCss from "../styles.css?url";
 import mdCleaningLogo from "../assets/md-cleaning-logo.png";
@@ -148,6 +148,19 @@ function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
   );
 }
 
+function LanguageSwitch({ to, label }: { to: string; label: string }) {
+  return (
+    <Link
+      to={to}
+      className="inline-flex h-9 items-center gap-2 rounded-full bg-surface px-3 text-xs font-medium uppercase tracking-wide text-foreground ring-1 ring-primary/20 transition-colors hover:bg-primary hover:text-primary-foreground"
+      aria-label={label === "EN" ? "Switch to English" : "Skift til dansk"}
+    >
+      <Globe2 className="size-4" aria-hidden="true" />
+      <span>{label}</span>
+    </Link>
+  );
+}
+
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const isEnglish = useSiteLanguage() === "en";
@@ -160,6 +173,7 @@ function Header() {
         contact: "Contact",
         contactMobile: "Request contact",
         language: "Dansk",
+        languageShort: "DA",
         languageTo: "/",
       }
     : {
@@ -170,6 +184,7 @@ function Header() {
         contact: "Kontakt",
         contactMobile: "Anmod om kontakt",
         language: "English",
+        languageShort: "EN",
         languageTo: "/en",
       };
 
@@ -183,7 +198,7 @@ function Header() {
           <NavLink to="/ydelser">{labels.services}</NavLink>
           <NavLink to="/saadan-fungerer-det">{labels.process}</NavLink>
           <NavLink to="/om-os">{labels.about}</NavLink>
-          <NavLink to={labels.languageTo}>{labels.language}</NavLink>
+          <LanguageSwitch to={labels.languageTo} label={labels.languageShort} />
           <Link
             to="/kontakt"
             className="px-4 py-2 ring-1 ring-foreground/10 rounded-full text-sm font-medium tracking-wide uppercase text-foreground hover:bg-foreground hover:text-background transition-all"
@@ -192,15 +207,18 @@ function Header() {
           </Link>
         </nav>
 
-        <button
-          type="button"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden p-2 -mr-2 text-foreground"
-          aria-label={mobileOpen ? "Luk menu" : "Åbn menu"}
-          aria-expanded={mobileOpen}
-        >
-          {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+          <LanguageSwitch to={labels.languageTo} label={labels.languageShort} />
+          <button
+            type="button"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="p-2 -mr-2 text-foreground"
+            aria-label={mobileOpen ? "Luk menu" : "Åbn menu"}
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+        </div>
       </div>
 
       {mobileOpen && (
@@ -237,8 +255,9 @@ function Header() {
             <Link
               to={labels.languageTo}
               onClick={() => setMobileOpen(false)}
-              className="text-sm font-medium tracking-wide uppercase text-muted-foreground hover:text-foreground"
+              className="inline-flex w-fit items-center gap-2 rounded-full bg-surface px-3 py-2 text-sm font-medium tracking-wide uppercase text-foreground ring-1 ring-primary/20"
             >
+              <Globe2 className="size-4" aria-hidden="true" />
               {labels.language}
             </Link>
             <Link

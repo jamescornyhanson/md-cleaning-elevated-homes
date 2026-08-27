@@ -11,6 +11,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { Menu, X } from "lucide-react";
 
 import appCss from "../styles.css?url";
+import mdCleaningLogo from "../assets/md-cleaning-logo.png";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -122,9 +123,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function Logo() {
   return (
-    <Link to="/" className="group flex flex-col leading-none text-primary">
-      <span className="text-xl font-semibold tracking-tight">MD Cleaning</span>
-      <span className="mt-1 h-0.5 w-full rounded-full bg-primary transition-transform group-hover:scale-x-95" />
+    <Link to="/" className="group flex items-center leading-none" aria-label="MD Cleaning forside">
+      <img
+        src={mdCleaningLogo}
+        alt="MD Cleaning"
+        width={56}
+        height={56}
+        className="h-12 w-12 object-contain transition-transform group-hover:scale-[0.98]"
+      />
     </Link>
   );
 }
@@ -222,7 +228,8 @@ function Footer() {
   return (
     <footer className="py-12 px-6 border-t border-black/5 bg-background">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-        <div className="flex items-center gap-2 opacity-60">
+        <div className="flex items-center gap-3 opacity-80">
+          <img src={mdCleaningLogo} alt="MD Cleaning" width={42} height={42} className="h-10 w-10 object-contain" />
           <span className="text-sm font-semibold text-primary">MD Cleaning</span>
         </div>
 

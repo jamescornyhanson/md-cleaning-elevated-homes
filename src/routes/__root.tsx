@@ -9,7 +9,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
-import { Globe2, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 import appCss from "../styles.css?url";
 import mdCleaningLogo from "../assets/md-cleaning-logo.png";
@@ -148,16 +148,59 @@ function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
   );
 }
 
-function LanguageSwitch({ to, label }: { to: string; label: string }) {
+function LanguageSwitch({ isEnglish }: { isEnglish: boolean }) {
   return (
-    <Link
-      to={to}
-      className="inline-flex h-9 items-center gap-2 rounded-full bg-surface px-3 text-xs font-medium uppercase tracking-wide text-foreground ring-1 ring-primary/20 transition-colors hover:bg-primary hover:text-primary-foreground"
-      aria-label={label === "EN" ? "Switch to English" : "Skift til dansk"}
+    <div
+      className="inline-flex items-center gap-1 rounded-full bg-surface p-1 ring-1 ring-primary/20"
+      aria-label="Vælg sprog"
     >
-      <Globe2 className="size-4" aria-hidden="true" />
-      <span>{label}</span>
-    </Link>
+      <Link
+        to="/"
+        className={`inline-flex h-8 w-10 items-center justify-center rounded-full transition-colors ${
+          !isEnglish ? "bg-primary/10 ring-1 ring-primary/30" : "hover:bg-background"
+        }`}
+        aria-label="Dansk"
+      >
+        <span className="sr-only">Dansk</span>
+        <FlagDenmark />
+      </Link>
+      <Link
+        to="/en"
+        className={`inline-flex h-8 w-10 items-center justify-center rounded-full transition-colors ${
+          isEnglish ? "bg-primary/10 ring-1 ring-primary/30" : "hover:bg-background"
+        }`}
+        aria-label="English"
+      >
+        <span className="sr-only">English</span>
+        <FlagUnitedKingdom />
+      </Link>
+    </div>
+  );
+}
+
+function FlagDenmark() {
+  return (
+    <span
+      aria-hidden="true"
+      className="block h-4 w-6 overflow-hidden rounded-[2px] ring-1 ring-black/10"
+      style={{
+        background:
+          "linear-gradient(90deg, transparent 0 30%, #ffffff 30% 39%, transparent 39% 100%), linear-gradient(0deg, transparent 0 42%, #ffffff 42% 58%, transparent 58% 100%), #c60c30",
+      }}
+    />
+  );
+}
+
+function FlagUnitedKingdom() {
+  return (
+    <span
+      aria-hidden="true"
+      className="block h-4 w-6 overflow-hidden rounded-[2px] ring-1 ring-black/10"
+      style={{
+        background:
+          "linear-gradient(33deg, transparent 0 42%, #ffffff 42% 47%, #c8102e 47% 53%, #ffffff 53% 58%, transparent 58% 100%), linear-gradient(-33deg, transparent 0 42%, #ffffff 42% 47%, #c8102e 47% 53%, #ffffff 53% 58%, transparent 58% 100%), linear-gradient(0deg, transparent 0 38%, #ffffff 38% 62%, transparent 62% 100%), linear-gradient(90deg, transparent 0 42%, #ffffff 42% 58%, transparent 58% 100%), linear-gradient(0deg, transparent 0 44%, #c8102e 44% 56%, transparent 56% 100%), linear-gradient(90deg, transparent 0 46%, #c8102e 46% 54%, transparent 54% 100%), #012169",
+      }}
+    />
   );
 }
 
@@ -172,9 +215,6 @@ function Header() {
         about: "About",
         contact: "Contact",
         contactMobile: "Request contact",
-        language: "Dansk",
-        languageShort: "DA",
-        languageTo: "/",
       }
     : {
         home: "Forside",
@@ -183,9 +223,6 @@ function Header() {
         about: "Om os",
         contact: "Kontakt",
         contactMobile: "Anmod om kontakt",
-        language: "English",
-        languageShort: "EN",
-        languageTo: "/en",
       };
 
   return (
@@ -198,7 +235,7 @@ function Header() {
           <NavLink to="/ydelser">{labels.services}</NavLink>
           <NavLink to="/saadan-fungerer-det">{labels.process}</NavLink>
           <NavLink to="/om-os">{labels.about}</NavLink>
-          <LanguageSwitch to={labels.languageTo} label={labels.languageShort} />
+          <LanguageSwitch isEnglish={isEnglish} />
           <Link
             to="/kontakt"
             className="px-4 py-2 ring-1 ring-foreground/10 rounded-full text-sm font-medium tracking-wide uppercase text-foreground hover:bg-foreground hover:text-background transition-all"
@@ -208,7 +245,7 @@ function Header() {
         </nav>
 
         <div className="md:hidden flex items-center gap-2">
-          <LanguageSwitch to={labels.languageTo} label={labels.languageShort} />
+          <LanguageSwitch isEnglish={isEnglish} />
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -251,14 +288,6 @@ function Header() {
               className="text-sm font-medium tracking-wide uppercase text-muted-foreground hover:text-foreground"
             >
               {labels.about}
-            </Link>
-            <Link
-              to={labels.languageTo}
-              onClick={() => setMobileOpen(false)}
-              className="inline-flex w-fit items-center gap-2 rounded-full bg-surface px-3 py-2 text-sm font-medium tracking-wide uppercase text-foreground ring-1 ring-primary/20"
-            >
-              <Globe2 className="size-4" aria-hidden="true" />
-              {labels.language}
             </Link>
             <Link
               to="/kontakt"

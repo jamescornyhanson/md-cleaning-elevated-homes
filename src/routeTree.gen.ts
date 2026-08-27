@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EnRouteImport } from './routes/en'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as LandingssiderRouteImport } from './routes/landingssider'
 import { Route as OmOsRouteImport } from './routes/om-os'
@@ -23,6 +24,11 @@ import { Route as YdelserRouteImport } from './routes/ydelser'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnRoute = EnRouteImport.update({
+  id: '/en',
+  path: '/en',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KontaktRoute = KontaktRouteImport.update({
@@ -77,6 +83,7 @@ const YdelserRoute = YdelserRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/en': typeof EnRoute
   '/kontakt': typeof KontaktRoute
   '/landingssider': typeof LandingssiderRoute
   '/om-os': typeof OmOsRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/en': typeof EnRoute
   '/kontakt': typeof KontaktRoute
   '/landingssider': typeof LandingssiderRoute
   '/om-os': typeof OmOsRoute
@@ -102,6 +110,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/en': typeof EnRoute
   '/kontakt': typeof KontaktRoute
   '/landingssider': typeof LandingssiderRoute
   '/om-os': typeof OmOsRoute
@@ -116,6 +125,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/en'
     | '/kontakt'
     | '/landingssider'
     | '/om-os'
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/en'
     | '/kontakt'
     | '/landingssider'
     | '/om-os'
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/en'
     | '/kontakt'
     | '/landingssider'
     | '/om-os'
@@ -153,6 +165,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EnRoute: typeof EnRoute
   KontaktRoute: typeof KontaktRoute
   LandingssiderRoute: typeof LandingssiderRoute
   OmOsRoute: typeof OmOsRoute
@@ -171,6 +184,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en': {
+      id: '/en'
+      path: '/en'
+      fullPath: '/en'
+      preLoaderRoute: typeof EnRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kontakt': {
@@ -241,6 +261,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EnRoute: EnRoute,
   KontaktRoute: KontaktRoute,
   LandingssiderRoute: LandingssiderRoute,
   OmOsRoute: OmOsRoute,

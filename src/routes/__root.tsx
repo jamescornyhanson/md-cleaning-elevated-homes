@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -149,6 +150,28 @@ function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
 
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const isEnglish = useSiteLanguage() === "en";
+  const labels = isEnglish
+    ? {
+        home: "Home",
+        services: "Services",
+        process: "How it works",
+        about: "About",
+        contact: "Contact",
+        contactMobile: "Request contact",
+        language: "Dansk",
+        languageTo: "/",
+      }
+    : {
+        home: "Forside",
+        services: "Ydelser",
+        process: "Sådan fungerer det",
+        about: "Om os",
+        contact: "Kontakt",
+        contactMobile: "Anmod om kontakt",
+        language: "English",
+        languageTo: "/en",
+      };
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md ring-1 ring-black/5">
@@ -156,15 +179,16 @@ function Header() {
         <Logo />
 
         <nav className="hidden md:flex items-center gap-8">
-          <NavLink to="/">Forside</NavLink>
-          <NavLink to="/ydelser">Ydelser</NavLink>
-          <NavLink to="/saadan-fungerer-det">Sådan fungerer det</NavLink>
-          <NavLink to="/om-os">Om os</NavLink>
+          <NavLink to="/">{labels.home}</NavLink>
+          <NavLink to="/ydelser">{labels.services}</NavLink>
+          <NavLink to="/saadan-fungerer-det">{labels.process}</NavLink>
+          <NavLink to="/om-os">{labels.about}</NavLink>
+          <NavLink to={labels.languageTo}>{labels.language}</NavLink>
           <Link
             to="/kontakt"
             className="px-4 py-2 ring-1 ring-foreground/10 rounded-full text-sm font-medium tracking-wide uppercase text-foreground hover:bg-foreground hover:text-background transition-all"
           >
-            Kontakt
+            {labels.contact}
           </Link>
         </nav>
 
@@ -187,35 +211,42 @@ function Header() {
               onClick={() => setMobileOpen(false)}
               className="text-sm font-medium tracking-wide uppercase text-muted-foreground hover:text-foreground"
             >
-              Forside
+              {labels.home}
             </Link>
             <Link
               to="/ydelser"
               onClick={() => setMobileOpen(false)}
               className="text-sm font-medium tracking-wide uppercase text-muted-foreground hover:text-foreground"
             >
-              Ydelser
+              {labels.services}
             </Link>
             <Link
               to="/saadan-fungerer-det"
               onClick={() => setMobileOpen(false)}
               className="text-sm font-medium tracking-wide uppercase text-muted-foreground hover:text-foreground"
             >
-              Sådan fungerer det
+              {labels.process}
             </Link>
             <Link
               to="/om-os"
               onClick={() => setMobileOpen(false)}
               className="text-sm font-medium tracking-wide uppercase text-muted-foreground hover:text-foreground"
             >
-              Om os
+              {labels.about}
+            </Link>
+            <Link
+              to={labels.languageTo}
+              onClick={() => setMobileOpen(false)}
+              className="text-sm font-medium tracking-wide uppercase text-muted-foreground hover:text-foreground"
+            >
+              {labels.language}
             </Link>
             <Link
               to="/kontakt"
               onClick={() => setMobileOpen(false)}
               className="text-sm font-medium tracking-wide uppercase text-foreground"
             >
-              Anmod om kontakt
+              {labels.contactMobile}
             </Link>
           </nav>
         </div>
@@ -225,6 +256,8 @@ function Header() {
 }
 
 function Footer() {
+  const isEnglish = useSiteLanguage() === "en";
+
   return (
     <footer className="py-12 px-6 border-t border-black/5 bg-background">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
@@ -238,7 +271,8 @@ function Footer() {
         </div>
 
         <div className="text-xs text-muted-foreground">
-          &copy; {new Date().getFullYear()} MD Cleaning. Alle rettigheder forbeholdes.
+          &copy; {new Date().getFullYear()} MD Cleaning.{" "}
+          {isEnglish ? "All rights reserved." : "Alle rettigheder forbeholdes."}
         </div>
       </div>
     </footer>
@@ -246,8 +280,10 @@ function Footer() {
 }
 
 function RootShell({ children }: { children: ReactNode }) {
+  const language = useSiteLanguage();
+
   return (
-    <html lang="da">
+    <html lang={language}>
       <head>
         <HeadContent />
       </head>
@@ -257,6 +293,11 @@ function RootShell({ children }: { children: ReactNode }) {
       </body>
     </html>
   );
+}
+
+function useSiteLanguage() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  return pathname === "/en" ? "en" : "da";
 }
 
 function RootComponent() {

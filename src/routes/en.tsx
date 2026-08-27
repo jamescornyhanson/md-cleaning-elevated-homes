@@ -4,18 +4,18 @@ import heroInterior from "../assets/hero-interior.jpg";
 import { HomePage } from "../components/marketing/HomePage";
 import { homeContent } from "../content/homeContent";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/en")({
   head: () => ({
     meta: [
-      { title: homeContent.da.meta.title },
+      { title: homeContent.en.meta.title },
       {
         name: "description",
-        content: homeContent.da.meta.description,
+        content: homeContent.en.meta.description,
       },
-      { property: "og:title", content: homeContent.da.meta.ogTitle },
+      { property: "og:title", content: homeContent.en.meta.ogTitle },
       {
         property: "og:description",
-        content: homeContent.da.meta.ogDescription,
+        content: homeContent.en.meta.ogDescription,
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -23,9 +23,9 @@ export const Route = createFileRoute("/")({
       { name: "twitter:image", content: heroInterior },
     ],
   }),
-  component: Forside,
+  component: EnglishHome,
 });
 
-function Forside() {
-  return <HomePage content={homeContent.da} />;
+function EnglishHome() {
+  return <HomePage content={homeContent.en} />;
 }
